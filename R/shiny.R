@@ -16,12 +16,12 @@ ui <- fluidPage(
     )),
     column(width = 5, wellPanel(
       checkboxGroupInput(inputId = "feature", label = "Choose the weather feature", 
-                         choices=c("temp_f","temp_c","wind_mph","wind_kt","wind_dir"), 
+                         choices=c("weather","temp_f","wind_mph","wind_dir","relative_humidity","pressure_in","visibility_mi","dewpoint_f"), 
                          selected=NULL)
     ))
   ),
 
-  plotOutput("plot_map", click = clickOpts(id = "plot_click")),
+  plotOutput("plot_map", height = 800, click = clickOpts(id = "plot_click")),
   tableOutput("click_info")
 
 )  
