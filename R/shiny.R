@@ -1,12 +1,12 @@
 library(shiny)
 
 ui <- fluidPage(
-  selectizeInput(inputId = "code", label = "Choose the airport code", 
-                 choices=read.table("airportCode")[,2], 
+  selectizeInput(inputId = "code", label = "Choose the airport code",
+                 choices=read.table("./data/airportCode")[,2],
                  selected=NULL,
                  multiple=T),
-  checkboxGroupInput(inputId = "feature", label = "Choose the weather feature", 
-                 choices=c("temp_f","temp_c","wind_mph","wind_kt","wind_dir"), 
+  checkboxGroupInput(inputId = "feature", label = "Choose the weather feature",
+                 choices=c("temp_f","temp_c","wind_mph","wind_kt","wind_dir"),
                  selected=NULL),
   mainPanel(
     tabsetPanel(
@@ -27,7 +27,7 @@ ui <- fluidPage(
       )
     )
   )
-) 
+)
 
 server <- function(input, output) {
   output$data_table <- renderTable({
@@ -60,4 +60,4 @@ server <- function(input, output) {
   })
 }
 
-shinyApp(ui = ui, server = server)    
+shinyApp(ui = ui, server = server)

@@ -8,7 +8,7 @@ Authors@R:
     "Jing Hou <jinghou@iastate.edu> [aut]",
     "Jing Li <jingli@iastate.edu> [aut]",
     "Yuchen Wang <yuchenw@iastate.edu> [aut]",
-    "Ying Zheng <zhy@iastate.edu> [aut]"
+    "Ying Zheng <zhy@iastate.edu> [aut, cre]"
     ))
 Description: A package to get and visualize the weather data of airports in the US
 License: GPL-3
@@ -21,9 +21,8 @@ Suggests:
     testthat
 RoxygenNote: 6.1.1
 Imports:
-    tidyverse
-    ggmap
-    maps
-    mapdata
+    tidyverse,
+    ggmap,
+    maps,
+    mapdata,
     shiny
-
