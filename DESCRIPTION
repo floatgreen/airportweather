@@ -25,4 +25,7 @@ Imports:
     ggmap,
     maps,
     mapdata,
-    shiny
+    shiny,
+    xml2,
+    ggplot2,
+    assertthat
