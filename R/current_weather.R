@@ -21,8 +21,13 @@ current_weather <- function(id, type){
   b <- xml2::xml_children(a)
   name <- xml2::xml_name(b)
   text <- xml2::xml_text(b)
+  location <- NA
+  station_id <- NA
+  latitude <- NA
+  longitude <- NA
   n <- length(name)
   m <- length(type)
+  observation_time <- NA
   data <- rep(NA, m)
   mark <- rep(0, m)
   if (m == 1){
