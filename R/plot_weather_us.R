@@ -62,6 +62,7 @@ plot_weather_us <- function(type, you.long, you.lat, bin){
                  color = "grey", alpha = 0.6) + 
     geom_contour(data = mtrx.melt, binwidth = bin,
                  aes(x = longitude, y = latitude, z = element,colour = ..level..)) +
+    scale_color_divergent() +
     geom_point(aes(x= you.long, y=you.lat), colour="red") +
     geom_text(aes(x = you.long - 0.5, y = you.lat - 0.5, label = "You"),size = 2) +
     theme_bw() +
