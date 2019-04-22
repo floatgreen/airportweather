@@ -30,6 +30,27 @@ current_weather <- function(id, type){
   observation_time <- NA
   data <- rep(NA, m)
   mark <- rep(0, m)
+  if (m==0){
+    for (i in 1:n){
+      if(name[i] == "location")
+        location <- text[i]
+      else if(name[i] == "station_id")
+        station_id <- id
+      else if(name[i] == "latitude")
+        latitude <- as.numeric(text[i])
+      else if(name[i] == "longitude")
+        longitude  <- as.numeric(text[i])
+      else if(name[i] == "observation_time")
+        observation_time <- text[i]
+      else if(name[i] == "weather"){
+        weather <- text[i]
+        mark <- 1
+      }
+
+    }
+    obs <- data.frame(location, station_id, latitude, longitude, observation_time,
+                      weather)
+  }
   if (m == 1){
     for (i in 1:n){
       if(name[i] == "location")
