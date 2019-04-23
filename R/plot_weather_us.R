@@ -12,6 +12,7 @@
 ##' @import ggplot2
 ##' @importFrom stats loess predict
 ##' @importFrom reshape melt
+##' @import stringr
 ##' @export
 
 plot_weather_us <- function(type, you.long, you.lat, bin){

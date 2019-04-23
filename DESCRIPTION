@@ -17,8 +17,6 @@ LazyData: true
 Depends: R (>= 3.1.0)
 URL: https://github.com/floatgreen/airportweather
 BugReports: https://github.com/floatgreen/airportweather/issues
-Suggests: 
-    testthat
 RoxygenNote: 6.1.1
 Imports:
     tidyverse,
@@ -28,4 +26,8 @@ Imports:
     shiny,
     xml2,
     ggplot2,
-    assertthat
+    assertthat,
+    reshape,
+    testthat,
+    stringr,
+    vdiffr

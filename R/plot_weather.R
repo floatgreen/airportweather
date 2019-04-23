@@ -11,7 +11,7 @@
 ##' @examples
 ##' plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
 ##'            type = "weather",
-##'            label = T, number = F)
+##'            label = TRUE, number = FALSE)
 ##' @import ggplot2
 ##' @export
 
@@ -21,14 +21,14 @@
 #label = true: label airport code on the plot
 #number = true: this element is numeric
 #plot one weather elements of several airport
-plot_weather <- function(id_vector, type, label = T, number = T){
+plot_weather <- function(id_vector, type, label = TRUE, number = TRUE){
   data <- current_weather_more(id_vector, type)
   colnames(data)[6]<-"element"
-  if (number == T){
+  if (number == TRUE){
     data$element <- as.numeric(as.character(data$element))
   }
   states <- map_data("state")
-  if(label == T){
+  if(label == TRUE){
     ggplot(data = states) +
       geom_polygon(aes(x = long, y = lat, group = group),
                    color = "grey", alpha = 0.6) +

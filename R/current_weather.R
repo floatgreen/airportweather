@@ -4,20 +4,24 @@
 ##' @usage current_weather(id,type)
 ##' @param id one 4 digits code of the airport
 ##' @param type a vector of weather elements
+# what types can we choose from?
 ##' @return a data frame of the weather information
 ##' @examples
 ##' current_weather("KAMW", c("wind_mph", "temp_f", "haha"))
 ##' current_weather("KAMW", "temp_c")
 ##' @import xml2
 ##' @importFrom  assertthat assert_that
+##' @import testthat
 ##' @export
 
 #Function1:read the data of one location
 #id is one code of airport，type is a vector of weather elements.
 #this function can read several weather elements of one location.
-current_weather <- function(id, type){
-  assertthat::assert_that(is.character(id))
-  assertthat::assert_that(stringr::str_length(id) == 4)
+current_weather <- function(id=NULL, type=NULL){
+  assertthat::assert_that(is.character(id) ,msg = "id is not a character")
+  assertthat::assert_that(length(id)==1,
+                          msg = "id is not an airport ID, if you want to get weather information from more than one airport, please use current_weather_more")
+  assertthat::assert_that(stringr::str_length(id) == 4,msg = "id is not an airport ID")
   a <- xml2::read_xml(paste("https://w1.weather.gov/xml/current_obs/", id, ".xml", sep = ""))
   b <- xml2::xml_children(a)
   name <- xml2::xml_name(b)
@@ -101,9 +105,9 @@ current_weather <- function(id, type){
     names(obs)[6:(6+m-1)] <- type
   }
   if(sum(mark) < m)
-    print("Some of your types are not found! They are shown as NA!")
+    message("Some of your types are not found! They are shown as NA!")
   assertthat::assert_that(is.data.frame(obs))
-  obs
+  return(obs)
 }
 
-#need testing functions
+

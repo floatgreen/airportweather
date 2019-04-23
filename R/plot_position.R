@@ -9,17 +9,16 @@
 ##' @details number = true: this element is numeric
 ##' @examples
 ##' plot_position(c("KAMW", "KAIO"),
-##' type = "temp_f", you.long = -100, you.lat = 35,
-##' number = T)
+##' type = "temp_f", you.long = -100, you.lat = 35,number = TRUE)
 ##' @import ggplot2
 ##' @export
 ##'
 ##'
-plot_position <- function(id_vector, type, you.long, you.lat, number = T){
+plot_position <- function(id_vector, type, you.long, you.lat, number = TRUE){
   data <- current_weather_more(id_vector, type)
   data <- na.omit(data)
   colnames(data)[6]<-"element"
-  if (number == T){
+  if (number == TRUE){
     data$element <- as.numeric(as.character(data$element))
   }
   states <- map_data("state")

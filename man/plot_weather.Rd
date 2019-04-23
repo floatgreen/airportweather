@@ -22,5 +22,5 @@ number = TRUE: this element is numeric
 \examples{
 plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
            type = "weather",
-           label = T, number = F)
+           label = TRUE, number = FALSE)
 }
