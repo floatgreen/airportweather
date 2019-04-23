@@ -4,7 +4,9 @@
 ##' @usage runShiny()
 ##' @return a shiny app
 ##' @examples
+##' \dontrun{
 ##' runShiny()
+##' }
 ##' @export
 
 runShiny <- function() {
