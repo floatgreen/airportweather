@@ -4,7 +4,7 @@
 \alias{plot_position}
 \title{Plot an Element of Selected Airports and Your location}
 \usage{
-plot_position(id_vector, type, you.long, you.lat, number = T)
+plot_position(id_vector, type, you.long, you.lat, number = TRUE)
 }
 \arguments{
 \item{id_vector}{a vector of  multiple airport codes}
@@ -14,12 +14,11 @@ plot_position(id_vector, type, you.long, you.lat, number = T)
 \item{you.long}{The longitude of your location}
 
 \item{you.lat}{The latitude of your location}
+
+\item{number}{number= true: this element is numeric}
 }
 \description{
 This function plot an element of selected airport and your position.
-}
-\details{
-number = true: this element is numeric
 }
 \examples{
 plot_position(c("KAMW", "KAIO"),

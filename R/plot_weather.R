@@ -1,13 +1,11 @@
 ##' @name plot_weather
 ##' @title Plot Weather Information on Map
 ##' @description plot an element of an weather informaton of multiple airports on map
-##' @usage plot_weather(id_vector, type, label = T, number = T)
+##' @usage plot_weather(id_vector, type, label = TRUE, number = TRUE)
 ##' @param id_vector a vector of multiple airport codes
 ##' @param type a vector of weather elements
-##' @details
-##' label = TRUE: label airport code on the plot
-##'
-##' number = TRUE: this element is numeric
+##' @param label lable= TRUE: label airport code on the plot
+##' @param number number= TRUE: this element is numeric
 ##' @examples
 ##' plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
 ##'            type = "weather",

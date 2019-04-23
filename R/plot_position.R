@@ -1,12 +1,12 @@
 ##' @name plot_position
 ##' @title Plot an Element of Selected Airports and Your location
 ##' @description This function plot an element of selected airport and your position.
-##' @usage plot_position(id_vector, type, you.long, you.lat, number = T)
+##' @usage plot_position(id_vector, type, you.long, you.lat, number = TRUE)
 ##' @param id_vector a vector of  multiple airport codes
 ##' @param type a vector of weather elements
 ##' @param you.long The longitude of your location
 ##' @param you.lat The latitude of your location
-##' @details number = true: this element is numeric
+##' @param number number= true: this element is numeric
 ##' @examples
 ##' plot_position(c("KAMW", "KAIO"),
 ##' type = "temp_f", you.long = -100, you.lat = 35,number = TRUE)
