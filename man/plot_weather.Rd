@@ -4,20 +4,19 @@
 \alias{plot_weather}
 \title{Plot Weather Information on Map}
 \usage{
-plot_weather(id_vector, type, label = T, number = T)
+plot_weather(id_vector, type, label = TRUE, number = TRUE)
 }
 \arguments{
 \item{id_vector}{a vector of multiple airport codes}
 
 \item{type}{a vector of weather elements}
+
+\item{label}{lable= TRUE: label airport code on the plot}
+
+\item{number}{number= TRUE: this element is numeric}
 }
 \description{
 plot an element of an weather informaton of multiple airports on map
-}
-\details{
-label = TRUE: label airport code on the plot
-
-number = TRUE: this element is numeric
 }
 \examples{
 plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
