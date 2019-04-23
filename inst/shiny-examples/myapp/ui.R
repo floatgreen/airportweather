@@ -8,7 +8,7 @@ ui <- fluidPage(
       selectizeInput(inputId = "code", label = "Choose the airport code",
                      ###Read airpor code data from your computer
                      ###Will change the path in the package
-                     choices=read.table(system.file("extdata", "airportCode", package = "airportweather"))[,2],
+                     choices=read.table(system.file("exdata", "airportCode", package = "airportweather"))[,2],
                      selected=NULL,
                      multiple=T)
     )),
