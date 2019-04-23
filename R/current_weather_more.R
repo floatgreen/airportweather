@@ -7,7 +7,9 @@
 ##' @return a data frame of the weather information
 ##' @examples
 ##' current_weather_more(c("KAMW", "KAIO", "KCID", "KCNC"), c("temp_f"))
-##' @import xml2 assertthat
+##' @import xml2
+##' @importFrom  assertthat assert_that
+##' @export
 
 #Function2:read the data of several different locations
 #id is a vector of the codes of airports，type is a vector of weather elements.

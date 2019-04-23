@@ -8,7 +8,8 @@
 ##' @examples
 ##' current_weather("KAMW", c("wind_mph", "temp_f", "haha"))
 ##' current_weather("KAMW", "temp_c")
-##' @import xml2 assertthat
+##' @import xml2
+##' @importFrom  assertthat assert_that
 ##' @export
 
 #Function1:read the data of one location
@@ -106,4 +107,3 @@ current_weather <- function(id, type){
 }
 
 #need testing functions
-#need

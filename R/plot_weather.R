@@ -12,9 +12,10 @@
 ##' plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
 ##'            type = "weather",
 ##'            label = T, number = F)
-##' @import ggplot2 ggmap maps mapdata
+##' @import ggplot2
 ##' @export
 
+#dependence? ggmap maps mapdata
 
 #Function3: plot an element
 #label = true: label airport code on the plot

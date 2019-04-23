@@ -1,9 +1,19 @@
-#Function4: plot an numeric element of all US airport in contour lines
-#plot = "point": point plot; you can change it to "contour" if number = true
-#you.long: your longitude
-#you.lat: your latitude
-#bin: the binwidth of the contour lines
-#plot one weather elements of all US airport 
+##' @name plot_weather_us
+##' @title Plot an Numeric Element of All US Airport in Contour Lines
+##' @description This function plot an numeric element of all US airport in contour lines
+##' @usage plot_weather_us(type, you.long, you.lat, bin)
+##' @param type a vector of weather elements
+##' @param you.long The longitude of your location
+##' @param you.lat The latitude of your location
+##' @param bin the binwidth of the contour lines
+##' @examples
+##' plot_weather_us(type = "temp_c",
+##' you.long = -100, you.lat = 35,bin = 0.5)
+##' @import ggplot2
+##' @importFrom stats loess predict
+##' @importFrom reshape melt
+##' @export
+
 plot_weather_us <- function(type, you.long, you.lat, bin){
   id <- c("KBHM", "KDHN", "KHSV", "KMOB", "KMGM", "KIFP", "KFLG", "KGCN", "KIWA",
           "KPGA", "KPHX", "KTUS", "KNYL", "KXNA", "KFSM", "KLIT", "KTXK", "KACV",
@@ -13,7 +23,7 @@ plot_weather_us <- function(type, you.long, you.lat, bin){
           "KGUC", "KHDN", "KMTJ", "KBDL", "KHVN", "KILG", "KDAB", "KFLL", "KRSW",
           "KGNV", "KJAX", "KEYW", "KMLB", "KMIA", "KMCO", "KSFB", "KECP", "KPNS",
           "KPGD", "KSRQ", "KSGJ", "KPIE", "KTLH", "KTPA", "KVPS", "KPBI", "KABY",
-          "KATL", "KAGS", "KBQK", "KCSG", "KSAV", "KVLD", "KBOI", "KSUN", "KIDA", 
+          "KATL", "KAGS", "KBQK", "KCSG", "KSAV", "KVLD", "KBOI", "KSUN", "KIDA",
           "KLWS", "KPIH",
           "KTWF", "KBLV", "KBMI", "KCMI", "KORD", "KMDW", "KMWA", "KMLI", "KPIA",
           "KUIN", "KRFD", "KSPI", "KEVV", "KFWA", "KIND", "KSBN", "KCID", "KDSM",
@@ -57,21 +67,18 @@ plot_weather_us <- function(type, you.long, you.lat, bin){
   colnames(mtrx.melt)[3]<-"element"
   mtrx.melt$longitude <- as.numeric(str_sub(mtrx.melt$longitude, str_locate(mtrx.melt$longitude, '=')[1,1] + 1))
   mtrx.melt$latitude <- as.numeric(str_sub(mtrx.melt$latitude, str_locate(mtrx.melt$latitude, '=')[1,1] + 1))
-  ggplot(data = states) + 
+  ggplot(data = states) +
     geom_polygon(aes(x = long, y = lat, group = group),
-                 color = "grey", alpha = 0.6) + 
+                 color = "grey", alpha = 0.6) +
     geom_contour(data = mtrx.melt, binwidth = bin,
                  aes(x = longitude, y = latitude, z = element,colour = ..level..)) +
     geom_point(aes(x= you.long, y=you.lat), colour="red") +
     geom_text(aes(x = you.long - 0.5, y = you.lat - 0.5, label = "You"),size = 2) +
     theme_bw() +
-    labs(title = type, 
+    labs(title = type,
          subtitle = as.character(data$observation_time[1]))+
     coord_fixed(1.3) +
     guides(fill = FALSE)
 }
 
-#example
-plot_weather_us(type = "temp_c",
-                you.long = -100, you.lat = 35,
-                bin = 0.5)
+
