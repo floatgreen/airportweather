@@ -1,5 +1,6 @@
 [![Build Status](https://travis-ci.org/floatgreen/airportweather.svg?branch=master)](https://travis-ci.org/floatgreen/airportweather)
 
+[![Coverage status](https://codecov.io/gh/floatgreen/airportweather/branch/master/graph/badge.svg)](https://codecov.io/github/floatgreen/airportweather?branch=master)
 
 # airportweather
 
