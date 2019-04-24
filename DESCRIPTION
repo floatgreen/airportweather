@@ -30,4 +30,7 @@ Imports:
     reshape,
     testthat,
     stringr
-
+Suggests: 
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
