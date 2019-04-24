@@ -39,7 +39,7 @@
 <li>
   <a href="index.html">
     <span class="fa fa-home fa-lg"></span>
-     
+
   </a>
 </li>
 <li>
@@ -50,7 +50,7 @@
 <li>
   <a href="https://github.com/floatgreen/airportweather">
     <span class="fa fa-github fa-lg"></span>
-     
+
   </a>
 </li>
       </ul>
@@ -61,7 +61,7 @@
 </div>
 <!--/.navbar -->
 
-      
+
       </header><div class="row">
   <div class="contents col-md-9">
 <div id="airportweather" class="section level1">
@@ -72,6 +72,9 @@
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can download the package “airportweather” from <a href="https://github.com/floatgreen/airportweather">github</a>, then install (build) it with ctrl+shift+B.</p>
+<p>Or you can also install the package using <code>devtools</code>:</p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(devtools)
+<span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"floatgreen/airportweather"</span>)</code></pre></div>
 </div>
 <div id="example" class="section level2">
 <h2 class="hasAnchor">
@@ -81,31 +84,56 @@
 <li>Read the data of one airport.<br>
 If the components’ names do not exist or the data is missing, the result data frame shows NA(s).</li>
 </ol>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1"><span class="kw">current_weather</span>(<span class="st">"KAMW"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"wind_mph"</span>, <span class="st">"temp_f"</span>, <span class="st">"haha"</span>))</a>
-<a class="sourceLine" id="cb1-2" data-line-number="2"><span class="kw">current_weather</span>(<span class="st">"KAMW"</span>, <span class="st">"temp_c"</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/current_weather.html">current_weather</a></span>(<span class="st">"KAMW"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"wind_mph"</span>, <span class="st">"temp_f"</span>, <span class="st">"haha"</span>))
+<span class="kw"><a href="reference/current_weather.html">current_weather</a></span>(<span class="st">"KAMW"</span>, <span class="st">"temp_c"</span>)</code></pre></div>
 <ol>
 <li>Read the data of many airports.</li>
 </ol>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"><span class="kw">current_weather_more</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"temp_f"</span>))</a>
-<a class="sourceLine" id="cb2-2" data-line-number="2"><span class="kw">current_weather_more</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"temp_f"</span>, <span class="st">"wind_mph"</span>))</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/current_weather_more.html">current_weather_more</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"temp_f"</span>))
+<span class="kw"><a href="reference/current_weather_more.html">current_weather_more</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"temp_f"</span>, <span class="st">"wind_mph"</span>))</code></pre></div>
 <ol>
 <li>Plot one component of several airports on the map of US.</li>
 </ol>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"><span class="kw">plot_weather</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),</a>
-<a class="sourceLine" id="cb3-2" data-line-number="2">            <span class="dt">type =</span> <span class="st">"weather"</span>,</a>
-<a class="sourceLine" id="cb3-3" data-line-number="3">            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">FALSE</span>)</a>
-<a class="sourceLine" id="cb3-4" data-line-number="4">            </a>
-<a class="sourceLine" id="cb3-5" data-line-number="5"><span class="kw">plot_weather</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),</a>
-<a class="sourceLine" id="cb3-6" data-line-number="6">            <span class="dt">type =</span> <span class="st">"temp_f"</span>,</a>
-<a class="sourceLine" id="cb3-7" data-line-number="7">            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/plot_weather.html">plot_weather</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),
+            <span class="dt">type =</span> <span class="st">"weather"</span>,
+            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">FALSE</span>)
+
+<span class="kw"><a href="reference/plot_weather.html">plot_weather</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),
+            <span class="dt">type =</span> <span class="st">"temp_f"</span>,
+            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <ol>
 <li>Plot one component of the airports chosen by user and the user’s position on the map of US.</li>
 </ol>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw">plot_position</span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>), <span class="dt">type =</span> <span class="st">"temp_f"</span>, <span class="dt">you.long =</span> <span class="dv">-100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">number =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/plot_position.html">plot_position</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>), <span class="dt">type =</span> <span class="st">"temp_f"</span>, <span class="dt">you.long =</span> <span class="op">-</span><span class="dv">100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">number =</span> <span class="ot">TRUE</span>)</code></pre></div>
 <ol>
 <li>Plot one component of all airports and the user’s position on the map of US with contour lines. It takes a couple of seconds to run. The component has to be continues.</li>
 </ol>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw">plot_weather_us</span>(<span class="dt">type =</span> <span class="st">"temp_c"</span>,<span class="dt">you.long =</span> <span class="dv">-100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">bin =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/plot_weather_us.html">plot_weather_us</a></span>(<span class="dt">type =</span> <span class="st">"temp_c"</span>,<span class="dt">you.long =</span> <span class="op">-</span><span class="dv">100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">bin =</span> <span class="fl">0.5</span>)</code></pre></div>
+</div>
+<div id="shiny-app" class="section level2">
+<h2 class="hasAnchor">
+<a href="#shiny-app" class="anchor"></a>Shiny app</h2>
+<ol>
+<li>Launch shiny spp, and you should see the panel as below</li>
+</ol>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="reference/runShiny.html">runShiny</a></span>()</code></pre></div>
+<p><img src="launch.png" title="Launch shiny app" alt="alt text"></p>
+<ol>
+<li>Choose the airport code by typing the letter or just choose from menu. When you type letter, the menu will show all choice with the letters. You can choose multyple airport.</li>
+</ol>
+<p><img src="code.png" title="Choose airport code" alt="alt text"></p>
+<ol>
+<li>Choose the weather feature by clicking on the box. You can also choose several weather feature on this panel.</li>
+</ol>
+<p><img src="weather.png" title="Choose weather feature" alt="alt text"></p>
+<ol>
+<li>After selection of airport code and weather feature, a map with the airport position will be shown below the choice box.</li>
+</ol>
+<p><img src="map.png" title="Map with airport" alt="alt text"></p>
+<ol>
+<li>Using your mouse to click on the airpot point, the table of selected weather infomation will be shown in the table below the map.</li>
+</ol>
+<p><img src="info.png" title="Information of selected airport" alt="alt text"></p>
 </div>
 </div>
   </div>
@@ -114,9 +142,9 @@ If the components’ names do not exist or the data is missing, the result data 
     <div class="links">
 <h2>Links</h2>
 <ul class="list-unstyled">
-<li>Browse source code at <br><a href="https://github.com/floatgreen/airportweather">https://​github.com/​floatgreen/​airportweather</a>
+<li>Browse source code at <br><a href="https://github.com/floatgreen/airportweather">https://github.com/floatgreen/airportweather</a>
 </li>
-<li>Report a bug at <br><a href="https://github.com/floatgreen/airportweather/issues">https://​github.com/​floatgreen/​airportweather/​issues</a>
+<li>Report a bug at <br><a href="https://github.com/floatgreen/airportweather/issues">https://github.com/floatgreen/airportweather/issues</a>
 </li>
 </ul>
 </div>
@@ -150,7 +178,7 @@ If the components’ names do not exist or the data is missing, the result data 
       </footer>
 </div>
 
-  
+
 
   </body>
 </html>
