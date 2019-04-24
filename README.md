@@ -1,3 +1,6 @@
+[![Build Status](https://travis-ci.org/floatgreen/airportweather.svg?branch=master)](https://travis-ci.org/floatgreen/airportweather)
+
+
 # airportweather
 
 The goal of airportweather is to read the current weather component(s) from "https://w1.weather.gov/xml/current_obs/" and record the information as data frame or plot it on an US map.
