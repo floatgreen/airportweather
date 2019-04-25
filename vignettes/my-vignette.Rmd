@@ -32,14 +32,14 @@ library(airportweather)
 The site  https://w1.weather.gov/xml/current_obs/ provides access to observed current weather conditions for about 2,367 locations across 58 US States and Territories. 
 
 
-```{r, out.width = '80%', echo = FALSE}
+```{r, out.width = '70%', echo = FALSE}
 knitr::include_graphics("../screenshots/select_state_location.png")
 ```
 
 The ueser can click the XML link to acess current weather report of an airport location. From the browser, different kinds of weather associated data is shown.
 
 
-```{r, out.width = '80%', echo = FALSE}
+```{r, out.width = '70%', echo = FALSE}
 knitr::include_graphics("../screenshots/Ames_current.png")
 ```
 
@@ -55,7 +55,7 @@ knitr::include_graphics("../screenshots/Ames_current.png")
 
 Actully, the XML file contains more than 20 different types of weather data, as well as the location and time information of the observations. A link to "2 Day History" gives accesse of an HTML page contianing weather history data for past 72 hours. 
 
-```{r, out.width = '80%', echo = FALSE}
+```{r, out.width = '70%', echo = FALSE}
 knitr::include_graphics("../screenshots/2dayhist.png")
 ```
 
@@ -93,7 +93,45 @@ devtools::install_github("floatgreen/weatherstar")
 ### plot_weather_us()
 
 ### obhistory()
-This function extract tables from HTML and select 
+
+Usually, the `weather condition` (Sunny, Fog, etc..) and `air temperature`( in degrees Fahrenheit) are two most important elements in weather data. As a tiny example, obhistory() is able to retirve a table containing time, weather and temperature.
+
+```{r, results = "asis"}
+KAMW_Table <- obhistory("KAMW")
+pander::pandoc.table(head(KAMW_Table))
+
+```
+This function extract tables from HTML and select air tempereture as the  variable of interest. 
+
+The tabe contains 7 columns,  
+
+
+|Variable|Description|Type| 
+|---:|---:|:----:|
+|day|correspond to the date, 1 as the earliest date|factor|num|
+|date|the same as in the original html table|chr|
+|time|the same as in the original html table|chr|
+|fulltime|the full formated time|POSIXct||
+|Weather|the Weather|Factor|
+|Temperature|define the 1st, 2nd and 3rd 24 hours|Factor|
+
+
+Note that the returned dataframe has various number of rows, as the observation frequency is not fixed at each airport site. For instance, KAMW, where the weather data collected every hour will return 72 rows, while  KORD, where data collected every 20 minutes, will return 216 rows. 
+
+```{r, results = "asis"}
+KORD_Table <- obhistory("KORD")
+pander::pandoc.table(head(KORD_Table))
+```
+
+An unusual case is that when the user run functions exactly at the time of observation time, then the html will show one data point less than the normal cases, so is the rerurned dataframe.
+
+
+
+
+
+
+
+
 
 
 ### plot_temp_history()
@@ -109,6 +147,5 @@ Do we know  names of all possible types of weather data?
 
 We can retrieve and plot more continues data such as Relative Humidity for the past 3 days.
 
-intergrate 3 tabs ( location, leaflet, timeseries) in one shiny as the project requement need a complex shiny (it shoud be each to add 3 tabs)
-
+intergrate 3 tabs ( location, leaflet, timeseries) in one shiny app, as the project requirment need a complicated shiny.
 
