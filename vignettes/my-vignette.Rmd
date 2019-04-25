@@ -67,7 +67,7 @@ Thanks to the well orgnized weather data from National Weather Service website, 
 The primer key of the weather data  is **4 characer CODE** of airport loacations. Scraping from the root page https://w1.weather.gov/xml/current_obs/ , we have collected all possibe airport code together with the name of location and the state/territory abbreviations correspond to the code. The data set `all_code.rda` contains 2,367 US airport codes.
 
 ```{r, results = "asis"}
-data(package = "weatherstar", "all_code")
+data(package = "airportweather", "all_code")
 pander::pandoc.table(head(all_code))
 ```
 
