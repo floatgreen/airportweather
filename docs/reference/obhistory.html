@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Plot Weather Information on Map — plot_weather • airportweather</title>
+<title>Read weather observation history of One Airport Location — obhistory • airportweather</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Plot Weather Information on Map — plot_weather" />
+<meta property="og:title" content="Read weather observation history of One Airport Location — obhistory" />
 
-<meta property="og:description" content="plot an element of an weather informaton of multiple airports on map" />
+<meta property="og:description" content="This function read a table from an html page from National Weather Service website and output a dataframe" />
 <meta name="twitter:card" content="summary" />
 
 
@@ -111,51 +111,56 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Plot Weather Information on Map</h1>
-    <small class="dont-index">Source: <a href='https://github.com/floatgreen/airportweather/blob/master/R/plot_weather.R'><code>R/plot_weather.R</code></a></small>
-    <div class="hidden name"><code>plot_weather.Rd</code></div>
+    <h1>Read weather observation history of One Airport Location</h1>
+    <small class="dont-index">Source: <a href='https://github.com/floatgreen/airportweather/blob/master/R/obhistory.R'><code>R/obhistory.R</code></a></small>
+    <div class="hidden name"><code>obhistory.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>plot an element of an weather informaton of multiple airports on map</p>
+    <p>This function read a table from an html page from National Weather Service website and output a dataframe</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>plot_weather</span>(<span class='no'>id_vector</span>, <span class='no'>type</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>number</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
+    <pre class="usage"><span class='fu'>obhistory</span>(<span class='no'>id</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id_vector</th>
-      <td><p>a vector of multiple airport codes</p></td>
-    </tr>
-    <tr>
-      <th>type</th>
-      <td><p>a vector of weather elements</p></td>
-    </tr>
-    <tr>
-      <th>label</th>
-      <td><p>lable= TRUE: label airport code on the plot</p></td>
-    </tr>
-    <tr>
-      <th>number</th>
-      <td><p>number= TRUE: this element is numeric</p></td>
+      <th>id</th>
+      <td><p>one 4 character airport code</p></td>
     </tr>
     </table>
     
+    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
+
+    <p>a data frame with 7 variabes descripting the weather history of Weather and Temperature</p>
+    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>plot_weather</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"KAMW"</span>, <span class='st'>"KAIO"</span>, <span class='st'>"KCID"</span>, <span class='st'>"KCNC"</span>),
-           <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"weather"</span>,
-           <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>, <span class='kw'>number</span> <span class='kw'>=</span> <span class='fl'>FALSE</span>)</div><div class='img'><img src='plot_weather-1.png' alt='' width='700' height='433' /></div></pre>
+    <pre class="examples"><div class='input'><span class='fu'>obhistory</span>(<span class='st'>"KAMW"</span>)</div><div class='output co'>#&gt; <span style='color: #949494;'># A tibble: 71 x 7</span><span>
+#&gt;      day date  time  fulltime            Weather       Temperature hday      
+#&gt;    </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>               </span><span style='color: #949494;font-style: italic;'>&lt;dbl&gt;</span><span> </span><span style='color: #949494;font-style: italic;'>&lt;fct&gt;</span><span>     
+#&gt; </span><span style='color: #BCBCBC;'> 1</span><span>     1 22    03:53 2019-04-22 </span><span style='color: #949494;'>03:53:00</span><span> Fair                   65 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'> 2</span><span>     1 22    04:53 2019-04-22 </span><span style='color: #949494;'>04:53:00</span><span> Fair                   64 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'> 3</span><span>     1 22    05:53 2019-04-22 </span><span style='color: #949494;'>05:53:00</span><span> Fair                   64 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'> 4</span><span>     1 22    06:53 2019-04-22 </span><span style='color: #949494;'>06:53:00</span><span> A Few Clouds           63 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'> 5</span><span>     1 22    07:53 2019-04-22 </span><span style='color: #949494;'>07:53:00</span><span> Mostly Cloudy          61 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'> 6</span><span>     1 22    08:53 2019-04-22 </span><span style='color: #949494;'>08:53:00</span><span> Overcast               63 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'> 7</span><span>     1 22    09:53 2019-04-22 </span><span style='color: #949494;'>09:53:00</span><span> Overcast               63 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'> 8</span><span>     1 22    10:53 2019-04-22 </span><span style='color: #949494;'>10:53:00</span><span> Overcast               62 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'> 9</span><span>     1 22    11:53 2019-04-22 </span><span style='color: #949494;'>11:53:00</span><span> Overcast               64 first24hrs
+#&gt; </span><span style='color: #BCBCBC;'>10</span><span>     1 22    12:53 2019-04-22 </span><span style='color: #949494;'>12:53:00</span><span> Overcast               68 first24hrs
+#&gt; </span><span style='color: #949494;'># … with 61 more rows</span><span></div></span></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-            
+      
+      <li><a href="#value">Value</a></li>
+      
       <li><a href="#examples">Examples</a></li>
     </ul>
 
