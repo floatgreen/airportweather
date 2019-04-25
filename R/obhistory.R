@@ -14,7 +14,7 @@ obhistory <- function(id=NULL){
   assertthat::assert_that(is.character(id) , msg = "id is not a string")
   assertthat::assert_that(stringr::str_length(id) == 4, msg = "id is not 4 characters")
   #load("./data/all_code.rda")
-  data(package = "weatherstar", "all_code")
+  data(package = "airportweather", "all_code")
   code <- all_code$Code
   assert_that(id %in% code , msg = "not a correct ID")
 
