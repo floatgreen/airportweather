@@ -35,7 +35,6 @@ Imports:
     testthat,
     stringr,
     pander,
-    leaflet,
     magrittr
 Suggests: 
     knitr,
