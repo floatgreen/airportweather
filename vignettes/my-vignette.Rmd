@@ -1,7 +1,7 @@
 ---
 title: "airportweather"
 date: "`r Sys.Date()`"
-output: 
+output:
   html_document:
     toc: true
     toc_depth: 3
@@ -59,7 +59,7 @@ Actully, the XML file contains more than 20 different types of weather data, as 
 knitr::include_graphics("../screenshots/2dayhist.png")
 ```
 
-Thanks to the well orgnized weather data from National Weather Service website, the user can easily explore both the spatial and temporal aspect of weather of selected locations. However, the XML and HTML data need to be converted to be dataframes used in reseach and analysis. The package `airportweather` is designed to be a efficient tool to scrape, extract, integrate and visualize the weather data of airport locations. The advantage of the package is it scrapes and analysis real time data from web when running functions of the package, rather than downloads some outdated data files.
+Thanks to the well orgnized weather data from National Weather Service website, the user can easily explore both the spatial and temporal aspect of weather of selected locations. However, the XML and HTML format need to be converted to dataframes before analysis. The package `airportweather` is designed as a efficient tool to scrape, extract, integrate and visualize the weather data of airport locations. The advantage of the package is it scrapes real time data from web when calling functions of the package, so the most up-to-date data is analyzed.
 
 
 ## package data preparation
@@ -80,45 +80,35 @@ devtools::install_github("floatgreen/weatherstar")
 
 ## Functions
 
-### 
+### current_weather(id,type)
+
+### current_weather_more(id_vector, type)
+
+### plot_position()
+
+### plot_temp_history()
+
+### plot_weather()
+
+### plot_weather_us()
+
+### obhistory()
+This function extract tables from HTML and select 
+
+
+### plot_temp_history()
 
 
 
+### runShiny()
 
 
+## future work
+
+Do we know  names of all possible types of weather data?
+
+We can retrieve and plot more continues data such as Relative Humidity for the past 3 days.
+
+intergrate 3 tabs ( location, leaflet, timeseries) in one shiny as the project requement need a complex shiny (it shoud be each to add 3 tabs)
 
 
-
-
-
-
-
-## aa
-
-## bb
-
-
-# function
-
-## 1
-## 2
-
-## 3
-
-## 4
-
-## 5
-# example 
-
-
-## 1
-
-## 2
-
-
-# futhur work
-
-
-## 1
-
-## 2
