@@ -123,18 +123,13 @@ KORD_Table <- obhistory("KORD")
 pander::pandoc.table(head(KORD_Table))
 ```
 
-An unusual case is that when the user run functions exactly at the time of observation time, then the html will show one data point less than the normal cases, so is the rerurned dataframe.
-
-
-
-
-
-
-
-
+An unusual case is that when the user run functions exactly at the time of an observation time, then the html will have one data point less than the normal cases, so does the rerurned dataframe.
 
 
 ### plot_temp_history()
+
+It is insteresting to test 
+
 
 
 
