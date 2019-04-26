@@ -1,5 +1,5 @@
 
-# airportweather <img src="screenshots/logo.png" align="right" alt="" width="120" />
+# airportweather <img src="man/figures/logo.png" align="right" alt="" width="120" />
 
 [![Build Status](https://travis-ci.org/floatgreen/airportweather.svg?branch=master)](https://travis-ci.org/floatgreen/airportweather)
 [![Coverage status](https://codecov.io/gh/floatgreen/airportweather/branch/master/graph/badge.svg)](https://codecov.io/github/floatgreen/airportweather?branch=master)
@@ -68,22 +68,22 @@ Launch shiny spp, and you should see the panel as below
 runShiny()
 ```
 
-![alt text](screenshots/launch.png "Launch shiny app")
+![alt text](man/figures/launch.png "Launch shiny app")
 
 Choose the airport code by typing the letter or just choose from menu. When you type letter, the menu will show all choice with the letters. You can choose multyple airport.
 
 
-![alt text](screenshots/code.png "Choose airport code")
+![alt text](man/figures/code.png "Choose airport code")
 
 Choose the weather feature by clicking on the box. You can also choose several weather feature on this panel.
 
-![alt text](screenshots/weather.png "Choose weather feature")
+![alt text](man/figures/weather.png "Choose weather feature")
 
 After selection of airport code and weather feature, a map with the airport position will be shown below the choice box.
 
-![alt text](screenshots/map.png "Map with airport")
+![alt text](man/figures/map.png "Map with airport")
 
 Using your mouse to click on the airpot point, the table of selected weather infomation will be shown in the table below the map.
 
-![alt text](screenshots/info.png "Information of selected airport")
+![alt text](man/figures/info.png "Information of selected airport")
 
