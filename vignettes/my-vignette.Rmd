@@ -33,14 +33,14 @@ The site  https://w1.weather.gov/xml/current_obs/ provides access to observed cu
 
 
 ```{r, out.width = '70%', echo = FALSE}
-knitr::include_graphics("../screenshots/select_state_location.png")
+knitr::include_graphics("../man/figures/select_state_location.png")
 ```
 
 The ueser can click the XML link to acess current weather report of an airport location. From the browser, different kinds of weather associated data is shown.
 
 
 ```{r, out.width = '70%', echo = FALSE}
-knitr::include_graphics("../screenshots/Ames_current.png")
+knitr::include_graphics("../man/figures/Ames_current.png")
 ```
 
 
@@ -56,7 +56,7 @@ knitr::include_graphics("../screenshots/Ames_current.png")
 Actully, the XML file contains more than 20 different types of weather data, as well as the location and time information of the observations. A link to "2 Day History" gives accesse of an HTML page contianing weather history data for past 72 hours. 
 
 ```{r, out.width = '70%', echo = FALSE}
-knitr::include_graphics("../screenshots/2dayhist.png")
+knitr::include_graphics("../man/figures/2dayhist.png")
 ```
 
 Thanks to the well orgnized weather data from National Weather Service website, the user can easily explore both the spatial and temporal aspect of weather of selected locations. However, the XML and HTML format need to be converted to dataframes before analysis. The package `airportweather` is designed as a efficient tool to scrape, extract, integrate and visualize the weather data of airport locations. The advantage of the package is it scrapes real time data from web when calling functions of the package, so the most up-to-date data is analyzed.
