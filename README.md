@@ -60,6 +60,18 @@ Plot one component of all airports and the user's position on the map of US with
 plot_weather_us(type = "temp_c",you.long = -100, you.lat = 35,bin = 0.5)
 ```
 
+Retrieve history weather and temperature data for 3 days of one airport location. 
+
+``` r
+obhistory("KAMW")
+```
+
+Plot the air temperature history for 3 days of one airport location.
+
+``` r
+plot_temp_history("KORD")
+```
+
 ## Shiny app
 
 Launch shiny spp, and you should see the panel as below
