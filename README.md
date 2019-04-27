@@ -79,11 +79,23 @@ Choose the weather feature by clicking on the box. You can also choose several w
 
 ![alt text](man/figures/weather.png "Choose weather feature")
 
-After selection of airport code and weather feature, a map with the airport position will be shown below the choice box.
+After selection of airport code and weather feature, a map with the airport position will be shown below the tab `Weather information on map`. The map shows the airports you selected, with the selected weather information on the points. You can also drag, zoom in or zoom out the map.
 
 ![alt text](man/figures/map.png "Map with airport")
 
-Using your mouse to click on the airpot point, the table of selected weather infomation will be shown in the table below the map.
+Below the map, you can also see a table with selected weather information as well as airport location information for selected airport.
 
 ![alt text](man/figures/info.png "Information of selected airport")
+
+When you swith to the tab `History weather at one location`, you will see a reminder if you choose more than one location. The tab shows the lastest 72h temperature for an airport, so you can only choose one location.
+
+![alt text](man/figures/history.png "Reminder for error")
+
+The history temperature plot shows 3 days temperature records, which presented as three different colors.
+
+![alt text](man/figures/temp_plot.png "Temperature plot for 72h")
+
+A detailed temperature history table is shown below the temperature plot. It include all temperature recorde for every hour. You can also search a certain time, weather or temperature in the search box.
+
+![alt text](man/figures/temp_table.png "Temperature table for 72h")
 

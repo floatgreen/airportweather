@@ -2,6 +2,8 @@
 ##' @title Run shiny app
 ##' @description Run shiny app to show the weather information.
 ##' @usage runShiny()
+##' @import leaflet
+##' @importFrom tidyr unite
 ##' @return a shiny app
 ##' @examples
 ##' \dontrun{
