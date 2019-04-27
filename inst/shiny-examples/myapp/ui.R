@@ -21,7 +21,7 @@ ui <- fluidPage(
 
   mainPanel(
     tabsetPanel(type = "tabs",
-                tabPanel("Weather information on map", leafletOutput("map"), tableOutput("weather_info")),
+                tabPanel("Weather information on map", leaflet::leafletOutput("map"), tableOutput("weather_info")),
                 tabPanel("History weather at one location", h3(textOutput("text")), plotOutput("plot_temp"), dataTableOutput("history_info"))
     )
   )

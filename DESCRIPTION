@@ -20,6 +20,7 @@ BugReports: https://github.com/floatgreen/airportweather/issues
 RoxygenNote: 6.1.1
 Imports:
     shiny,
+    tidyr,
     dplyr,
     ggmap,
     maps,
@@ -35,7 +36,9 @@ Imports:
     testthat,
     stringr,
     pander,
-    magrittr
+    magrittr,
+    leaflet,
+    httr
 Suggests: 
     knitr,
     rmarkdown,

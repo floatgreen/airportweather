@@ -14,12 +14,11 @@ obhistory <- function(id=NULL){
   assertthat::assert_that((length(id) == 1), msg = "num of argument should be 1")
   assertthat::assert_that(is.character(id) , msg = "id is not a string")
   assertthat::assert_that(stringr::str_length(id) == 4, msg = "id is not 4 characters")
-  #load("./data/all_code.rda")
-  data(package = "airportweather", "all_code")
-  code <- all_code$Code
-  assertthat::assert_that(id %in% code , msg = "not a correct ID")
+  url <- paste("https://w1.weather.gov/data/obhistory/", id, ".html", sep = "")
+  assertthat::assert_that(!(httr::http_error(httr::GET(url))),
+                          msg = "url is not valid, maybe not a correct ID")
 
-  webpage <- xml2::read_html(paste("https://w1.weather.gov/data/obhistory/", id, ".html", sep = ""))
+  webpage <- xml2::read_html(url)
   tbls_ls <- webpage %>%
     rvest::html_nodes("table") %>%
     .[4] %>%
@@ -33,6 +32,11 @@ obhistory <- function(id=NULL){
 
   # to get current time from current weather XML
   current <- xml2::read_xml(paste0("https://w1.weather.gov/xml/current_obs/", id ,".xml"))
+  loc_name  <- current %>% xml2::xml_children()%>%
+    xml2::xml_text()%>%.[6]
+  weather_table$loc_name <- loc_name
+  weather_table$code <- id
+
   current_obs_time <- current %>% xml2::xml_children()%>%
     xml2::xml_text()%>%.[10]
 
@@ -78,7 +82,7 @@ obhistory <- function(id=NULL){
   # reverse the dataset
   weather_table<- weather_table %>% purrr::map_df(rev)
 
-  histweather <- weather_table %>% dplyr::select(date, time, localtime, time_UTC, Weather, Temperature, hday)
+  histweather <- weather_table %>% dplyr::select(code, loc_name, date, time, localtime, time_UTC, Weather, Temperature, hday)
 
   assertthat::assert_that(is.data.frame(histweather))
   return(histweather)
