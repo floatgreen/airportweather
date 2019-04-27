@@ -29,47 +29,41 @@ library(airportweather)
 
 ## Introduction
 
-The site  https://w1.weather.gov/xml/current_obs/ provides access to observed current weather conditions for about 2,367 locations across 58 US States and Territories. 
+The National Weather Service site  https://w1.weather.gov/xml/current_obs/ provides access to observed current weather conditions for about 2,367 locations across 58 US States and Territories. 
 
-
-```{r, out.width = '70%', echo = FALSE}
+```{r, out.width = '100%', echo = FALSE}
 knitr::include_graphics("../man/figures/select_state_location.png")
 ```
 
-The ueser can click the XML link to acess current weather report of an airport location. From the browser, different kinds of weather associated data is shown.
+With the XML link for an airport code (e.g. KAMW), users can acess current weather report for the airport location. Different kinds of weather associated data is shown on the webpage. For instance, the page displays   
 
-
-```{r, out.width = '70%', echo = FALSE}
+```{r, out.width = '100%', echo = FALSE}
 knitr::include_graphics("../man/figures/Ames_current.png")
 ```
 
 
-- Weather 
-- Temperature 
-- Dewpoint 
-- Relative Humidity 
-- Wind 
-- Wind Chill
-- Visibility 
-- MSL Pressure 
+Actully, the XML file contains more than 20 different types of weather data, as well as the location and time information of the observations. Further more, a link to "2 Day History" gives accesse of an HTML page contianing weather history data for past 72 hours. 
 
-Actully, the XML file contains more than 20 different types of weather data, as well as the location and time information of the observations. A link to "2 Day History" gives accesse of an HTML page contianing weather history data for past 72 hours. 
-
-```{r, out.width = '70%', echo = FALSE}
+```{r, out.width = '100%', echo = FALSE}
 knitr::include_graphics("../man/figures/2dayhist.png")
 ```
 
-Thanks to the well orgnized weather data from National Weather Service website, the user can easily explore both the spatial and temporal aspect of weather of selected locations. However, the XML and HTML format need to be converted to dataframes before analysis. The package `airportweather` is designed as a efficient tool to scrape, extract, integrate and visualize the weather data of airport locations. The advantage of the package is it scrapes real time data from web when calling functions of the package, so the most up-to-date data is analyzed.
+Thanks to the well orgnized weather data structure from National Weather Service website, the user can easily explore both the spatial and temporal aspect of weather of selected locations. The site also provide the Zip files containing all XML files of current and updated hourly. However, people may be only interested in some selected sites, and do not borther to download big whole data. Also, the XML and HTML formats need to be converted to dataframes before downstream analysis. Web scraping is a nature idea to handel this. The package `airportweather` is designed as an efficient tool to scrape, extract, integrate and visualize the weather data of airport locations. The advantage of the package is it scrapes real time data from web when calling functions in the package, so the most up-to-date data is obtained.
 
 
-## package data preparation
+## Package data preparation
 
-The primer key of the weather data  is **4 characer CODE** of airport loacations. Scraping from the root page https://w1.weather.gov/xml/current_obs/ , we have collected all possibe airport code together with the name of location and the state/territory abbreviations correspond to the code. The data set `all_code.rda` contains 2,367 US airport codes.
+The primer key of the weather data  is **4 characer CODE** of airport locations. Scraping from the root page https://w1.weather.gov/xml/current_obs/ , we have collected all current airport code together with the name of location and the state/territory abbreviations correspond to the code. The data set `all_code.rda` contains 2,367 US airport codes from 58 state/territory. This data is used as the package example data to prvide currently valid codes of US airports. However, if new codes are added in the National Weather Service site, the `airportweather` package will still work as long as the format of webpage and stucture of the site keeps the same.
 
-```{r, results = "asis"}
+
+```{r, results = "asis", echo = FALSE}
 data(package = "airportweather", "all_code")
-pander::pandoc.table(head(all_code))
+kableExtra::kable(head(all_code)) %>% kableExtra::kable_styling(bootstrap_options = "striped", full_width = F )
+
+#pander::pandoc.table(head(all_code))
 ```
+
+
 
 ## Installation
 
@@ -82,65 +76,217 @@ devtools::install_github("floatgreen/weatherstar")
 
 ### current_weather(id,type)
 
+The `current_weather` function is the basic function for data retrieving. It reads the weather information of an airport from XML file on National Weather Service website (e.g., https://w1.weather.gov/xml/current_obs/KAMW.xml), and output a single row dataframe of location, station_id, latitude, longitude,	observation_time, and selceted types of the weather elements.
+
+Description of input parameters are as follows:
+
+|Parameter|Description|Type|
+|:---|:---|:---|
+|id| one 4-letter airport code |chr|
+|type|a vector of weather elements|chr vector|
+
+The possibe types of elements the function can deal with are
+
+- weather 
+- temp_f 
+- wind_mph 
+- wind_dir 
+- relative_humidity 
+- pressure_in 
+- visibility_mi 
+- dewpoint_f
+
+
+
+```{r, eval=FALSE}
+ current_weather("KAMW", c("wind_mph", "temp_f", "relative_humidity"))
+```
+
+
+```{r, results = "asis", echo = FALSE}
+c_weather<- current_weather("KAMW", c("wind_mph", "temp_f"))
+kableExtra::kable(c_weather) %>% kableExtra::kable_styling(bootstrap_options = "striped", full_width = F )
+```
+
+
+
 ### current_weather_more(id_vector, type)
+
+The `current_weather_more` function calls the `current_weather` function to retriving weather elements for multiple airports, and output integrated dataframe for multiple  airports.
+
+|Parameter|Description|Type|
+|:---|:---|:---|
+|id| one 4-letter airport code |chr vector|
+|type|a vector of weather elements|chr vector|
+
+
+```{r, eval=FALSE}
+
+current_weather_more(c("KAMW", "KAIO", "KCID", "KCNC"), c("wind_mph", "temp_f", "relative_humidity"))
+
+```
+
+
+```{r, results = "asis", echo = FALSE}
+c_weather<- current_weather_more(c("KAMW", "KAIO", "KCID", "KCNC"), c("wind_mph", "temp_f", "relative_humidity"))
+kableExtra::kable(c_weather) %>% kableExtra::kable_styling(bootstrap_options = "striped", full_width = F )
+```
+
+
+
+
+ 
+
+
+
+
 
 ### plot_position()
 
-### plot_temp_history()
+The`plot_position` function plot one weather component of the airports chosen by user and the user's position on the map of US.
+
+Description of input parameters are as follows:
+
+|Parameter|Description|Type|
+|:---|:---|:---|
+|id_vector|a vector of  multiple airport codes|chr vector|
+|type|a weather elements|chr |
+|you.long| user provided longitude |num|
+|you.lat| user provided latitude |num|
+|number|number= true: this element is numeric|logical|
+
+
+```{r}
+plot_position(c("KAMW", "KAIO"), type = "temp_f", you.long = -100, you.lat = 35,number = TRUE)
+```
+
 
 ### plot_weather()
 
+The`plot_weather` function plot one weather component of several airports on the map of US. The first argument is a vector contains 
+
+Description of input parameters are as follows:
+
+|Parameter|Description|Type|
+|:---|:---|:---|
+|id_vector|a vector of multiple airport codes|chr vector|
+|type|a weather element |chr|
+|label|lable= TRUE: label airport code on the plot|logical|
+|number|number= TRUE: this element is numeric|logica|
+
+
+The component can be factorial type, such as "weather", 
+
+```{r}
+plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
+            type = "weather",
+            label = TRUE, number = FALSE)
+            
+
+```
+
+or numerical/continuous type, sush as "temp_f"
+```{r}
+plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
+            type = "temp_f",
+            label = TRUE, number = TRUE)
+            
+```
+
+
+            
 ### plot_weather_us()
+
+The `plot_weather_us` function plot one component of all airports and the user-provided position on the map of US with contour lines. The component has to be continues, such as "temp_c".
+
+Description of input parameters are as follows:
+
+|Parameter|Description|Type|
+|:---|:---|:---|
+|type|a weather elements|chr|
+|you.long| user provided longitude |num|
+|you.lat| user provided latitude |num|
+|bin|the binwidth of the contour lines|num|
+
+
+```{r, eval = FALSE }
+plot_weather_us(type = "temp_c", you.long = -100, you.lat = 35,bin = 0.5)
+```
+It takes relaively long time to run this function. Below is a previous result as a demonstration.
+
+```{r, out.width = '90%', echo = FALSE}
+knitr::include_graphics("../man/figures/plot_weather_us-1.png")
+
+```
+
+
 
 ### obhistory()
 
-Usually, the `weather condition` (Sunny, Fog, etc..) and `air temperature`( in degrees Fahrenheit) are two most important elements in weather data. As a tiny example, obhistory() is able to retirve a table containing time, weather and temperature.
+Usually, the `weather condition` (Sunny, Fog, etc..) and `air temperature`( in degrees Fahrenheit) are two most important elements in weather data. As a tiny tool, obhistory() is able to retirve 3 day history of weather and temperature of one location. This function extract a table from HTML and select weather and air tempereture as the variables of interest. Output is a dataframe of 9 columns.
 
-```{r, results = "asis"}
-KAMW_Table <- obhistory("KAMW")
-pander::pandoc.table(head(KAMW_Table))
-
+```{r,eval = FALSE }
+obhistory("KAMW")
 ```
-This function extract tables from HTML and select air tempereture as the  variable of interest. 
 
-The tabe contains 7 columns,  
 
+```{r, results = "asis", echo = FALSE}
+KAMW_Table <- obhistory("KAMW")
+kableExtra::kable(head(KAMW_Table)) %>% kableExtra::kable_styling(bootstrap_options = "striped", full_width = F )
+```
+
+The description of each variable is as follows:
 
 |Variable|Description|Type| 
-|---:|---:|:----:|
-|day|correspond to the date, 1 as the earliest date|factor|num|
+|:---|:---|:---|
+|code|4 character airport code|chr|
+|loc_name|name of the airport location|chr|
 |date|the same as in the original html table|chr|
 |time|the same as in the original html table|chr|
-|fulltime|the full formated time|POSIXct||
+|localtime|the local time of observations|chr|
+|time_UTC|UTC time|POSIXct|
 |Weather|the Weather|Factor|
 |Temperature|define the 1st, 2nd and 3rd 24 hours|Factor|
 
-
-Note that the returned dataframe has various number of rows, as the observation frequency is not fixed at each airport site. For instance, KAMW, where the weather data collected every hour will return 72 rows, while  KORD, where data collected every 20 minutes, will return 216 rows. 
-
-```{r, results = "asis"}
-KORD_Table <- obhistory("KORD")
-pander::pandoc.table(head(KORD_Table))
-```
-
-An unusual case is that when the user run functions exactly at the time of an observation time, then the html will have one data point less than the normal cases, so does the rerurned dataframe.
+Note that the returned dataframe has various number of rows, as the observation frequency is not fixed at each airport site. For instance, KAMW, where the weather data collected every hour will return 72 rows, while  KORD, where data updated every 20 minutes, will return 216 rows. Furthermore, at some locations, the obsevation time points are not evenly distributed. So it will be important that the table contains detaied time information. A POSIXct formatted time variable (in UTC) is also generated based on data. If the user need to compare data from different time zones, the UTC time will make things tidier. 
 
 
 ### plot_temp_history()
 
-It is insteresting to test 
-
+It is interesting to explore the time series of air temperature for 3 days until current time. `plot_temp_history()` can easily generate a ggplot figure.with the airport location name in the title. The plot was grouped and colorred by each 24 hours. 
+```{r}
+plot_temp_history("KAMW")
+```
 
 
 
 ### runShiny()
 
+A shiny app was designed to demonstrate selected functions in the `airportweather` package. The spatial visualization tab, "Weather information on map",  call `current_weather_more` to show selected weather variables for single or multiple airports on interactive Maps  with `leaflet`, and generate an interated table for multiple locations as well.
+
+
+```{r, eval = FALSE }
+runShiny()
+```
+
+
+
+```{r, out.width = '100%', echo = FALSE}
+knitr::include_graphics("../man/figures/map.png")
+knitr::include_graphics("../man/figures/info.png")
+
+```
+
+
+The temporal visualization tab, "History weather at one location", call `plot_temp_history` to  generate a timeseries plot of temperature for past 3 days at one airport location,  and call `obhistory` to generate a table of weather and tempareture history of the past 3 days.
+
+```{r, out.width = '100%', echo = FALSE}
+knitr::include_graphics("../man/figures/temp_plot.png")
+knitr::include_graphics("../man/figures/temp_table.png")
+```
+
 
 ## future work
 
-Do we know  names of all possible types of weather data?
-
 We can retrieve and plot more continues data such as Relative Humidity for the past 3 days.
-
-intergrate 3 tabs ( location, leaflet, timeseries) in one shiny app, as the project requirment need a complicated shiny.
 

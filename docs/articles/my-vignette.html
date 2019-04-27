@@ -75,12 +75,12 @@
 <!--/.navbar -->
 
       
-      </header><div class="row">
+      </header><script src="my-vignette_files/kePrint-0.0.1/kePrint.js"></script><div class="row">
   <div class="col-md-9 contents">
     <div class="page-header toc-ignore">
       <h1>airportweather</h1>
             
-            <h4 class="date">2019-04-26</h4>
+            <h4 class="date">2019-04-27</h4>
       
       <small class="dont-index">Source: <a href="https://github.com/floatgreen/airportweather/blob/master/vignettes/my-vignette.Rmd"><code>vignettes/my-vignette.Rmd</code></a></small>
       <div class="hidden name"><code>my-vignette.Rmd</code></div>
@@ -89,76 +89,101 @@
 
     
     
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(airportweather)
-<span class="co">#&gt; Loading required package: shiny</span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1"><span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/library">library</a></span>(airportweather)</a>
+<a class="sourceLine" id="cb1-2" title="2"><span class="co">#&gt; Loading required package: shiny</span></a></code></pre></div>
 <div id="introduction" class="section level2">
 <h2 class="hasAnchor">
 <a href="#introduction" class="anchor"></a>Introduction</h2>
-<p>The site <a href="https://w1.weather.gov/xml/current_obs/" class="uri">https://w1.weather.gov/xml/current_obs/</a> provides access to observed current weather conditions for about 2,367 locations across 58 US States and Territories.</p>
-<p><img src="../man/figures/select_state_location.png" width="70%"></p>
-<p>The ueser can click the XML link to acess current weather report of an airport location. From the browser, different kinds of weather associated data is shown.</p>
-<p><img src="../man/figures/Ames_current.png" width="70%"></p>
-<ul>
-<li>Weather</li>
-<li>Temperature</li>
-<li>Dewpoint</li>
-<li>Relative Humidity</li>
-<li>Wind</li>
-<li>Wind Chill</li>
-<li>Visibility</li>
-<li>MSL Pressure</li>
-</ul>
-<p>Actully, the XML file contains more than 20 different types of weather data, as well as the location and time information of the observations. A link to “2 Day History” gives accesse of an HTML page contianing weather history data for past 72 hours.</p>
-<p><img src="../man/figures/2dayhist.png" width="70%"></p>
-<p>Thanks to the well orgnized weather data from National Weather Service website, the user can easily explore both the spatial and temporal aspect of weather of selected locations. However, the XML and HTML format need to be converted to dataframes before analysis. The package <code>airportweather</code> is designed as a efficient tool to scrape, extract, integrate and visualize the weather data of airport locations. The advantage of the package is it scrapes real time data from web when calling functions of the package, so the most up-to-date data is analyzed.</p>
+<p>The National Weather Service site <a href="https://w1.weather.gov/xml/current_obs/" class="uri">https://w1.weather.gov/xml/current_obs/</a> provides access to observed current weather conditions for about 2,367 locations across 58 US States and Territories.</p>
+<p><img src="../man/figures/select_state_location.png" width="100%"></p>
+<p>With the XML link for an airport code (e.g. KAMW), users can acess current weather report for the airport location. Different kinds of weather associated data is shown on the webpage. For instance, the page displays</p>
+<p><img src="../man/figures/Ames_current.png" width="100%"></p>
+<p>Actully, the XML file contains more than 20 different types of weather data, as well as the location and time information of the observations. Further more, a link to “2 Day History” gives accesse of an HTML page contianing weather history data for past 72 hours.</p>
+<p><img src="../man/figures/2dayhist.png" width="100%"></p>
+<p>Thanks to the well orgnized weather data structure from National Weather Service website, the user can easily explore both the spatial and temporal aspect of weather of selected locations. The site also provide the Zip files containing all XML files of current and updated hourly. However, people may be only interested in some selected sites, and do not borther to download big whole data. Also, the XML and HTML formats need to be converted to dataframes before downstream analysis. Web scraping is a nature idea to handel this. The package <code>airportweather</code> is designed as an efficient tool to scrape, extract, integrate and visualize the weather data of airport locations. The advantage of the package is it scrapes real time data from web when calling functions in the package, so the most up-to-date data is obtained.</p>
 </div>
 <div id="package-data-preparation" class="section level2">
 <h2 class="hasAnchor">
-<a href="#package-data-preparation" class="anchor"></a>package data preparation</h2>
-<p>The primer key of the weather data is <strong>4 characer CODE</strong> of airport loacations. Scraping from the root page <a href="https://w1.weather.gov/xml/current_obs/" class="uri">https://w1.weather.gov/xml/current_obs/</a> , we have collected all possibe airport code together with the name of location and the state/territory abbreviations correspond to the code. The data set <code>all_code.rda</code> contains 2,367 US airport codes.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/data">data</a></span>(<span class="dt">package =</span> <span class="st">"airportweather"</span>, <span class="st">"all_code"</span>)
-pander<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/pander/topics/pandoc.table.return">pandoc.table</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(all_code))</code></pre></div>
-<table class="table">
-<colgroup>
-<col width="11%">
-<col width="9%">
-<col width="44%">
-</colgroup>
-<thead><tr class="header">
-<th align="center">State</th>
-<th align="center">Code</th>
-<th align="center">Name</th>
+<a href="#package-data-preparation" class="anchor"></a>Package data preparation</h2>
+<p>The primer key of the weather data is <strong>4 characer CODE</strong> of airport locations. Scraping from the root page <a href="https://w1.weather.gov/xml/current_obs/" class="uri">https://w1.weather.gov/xml/current_obs/</a> , we have collected all current airport code together with the name of location and the state/territory abbreviations correspond to the code. The data set <code>all_code.rda</code> contains 2,367 US airport codes from 58 state/territory. This data is used as the package example data to prvide currently valid codes of US airports. However, if new codes are added in the National Weather Service site, the <code>airportweather</code> package will still work as long as the format of webpage and stucture of the site keeps the same.</p>
+<table class="table table table-striped">
+<thead><tr>
+<th style="text-align:left;">
+State
+</th>
+<th style="text-align:left;">
+Code
+</th>
+<th style="text-align:left;">
+Name
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="center">ak</td>
-<td align="center">PADK</td>
-<td align="center">Adak Island, Adak Airport</td>
+<tr>
+<td style="text-align:left;">
+ak
+</td>
+<td style="text-align:left;">
+PADK
+</td>
+<td style="text-align:left;">
+Adak Island, Adak Airport
+</td>
 </tr>
-<tr class="even">
-<td align="center">ak</td>
-<td align="center">PAUT</td>
-<td align="center">Akun Airport</td>
+<tr>
+<td style="text-align:left;">
+ak
+</td>
+<td style="text-align:left;">
+PAUT
+</td>
+<td style="text-align:left;">
+Akun Airport
+</td>
 </tr>
-<tr class="odd">
-<td align="center">ak</td>
-<td align="center">PAFM</td>
-<td align="center">Ambler, Ambler Airport</td>
+<tr>
+<td style="text-align:left;">
+ak
+</td>
+<td style="text-align:left;">
+PAFM
+</td>
+<td style="text-align:left;">
+Ambler, Ambler Airport
+</td>
 </tr>
-<tr class="even">
-<td align="center">ak</td>
-<td align="center">PAKP</td>
-<td align="center">Anaktuvuk Pass, Anaktuvuk Pass Airport</td>
+<tr>
+<td style="text-align:left;">
+ak
+</td>
+<td style="text-align:left;">
+PAKP
+</td>
+<td style="text-align:left;">
+Anaktuvuk Pass, Anaktuvuk Pass Airport
+</td>
 </tr>
-<tr class="odd">
-<td align="center">ak</td>
-<td align="center">PAED</td>
-<td align="center">Anchorage, Elmendorf Air Force Base</td>
+<tr>
+<td style="text-align:left;">
+ak
+</td>
+<td style="text-align:left;">
+PAED
+</td>
+<td style="text-align:left;">
+Anchorage, Elmendorf Air Force Base
+</td>
 </tr>
-<tr class="even">
-<td align="center">ak</td>
-<td align="center">PALH</td>
-<td align="center">Anchorage, Lake Hood Seaplane Base</td>
+<tr>
+<td style="text-align:left;">
+ak
+</td>
+<td style="text-align:left;">
+PALH
+</td>
+<td style="text-align:left;">
+Anchorage, Lake Hood Seaplane Base
+</td>
 </tr>
 </tbody>
 </table>
@@ -166,7 +191,7 @@ pander<span class="op">::</span><span class="kw"><a href="https://www.rdocumenta
 <div id="installation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#installation" class="anchor"></a>Installation</h2>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"floatgreen/weatherstar"</span>)</code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"floatgreen/weatherstar"</span>)</a></code></pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2 class="hasAnchor">
@@ -174,289 +199,658 @@ pander<span class="op">::</span><span class="kw"><a href="https://www.rdocumenta
 <div id="current_weatheridtype" class="section level3">
 <h3 class="hasAnchor">
 <a href="#current_weatheridtype" class="anchor"></a>current_weather(id,type)</h3>
+<p>The <code>current_weather</code> function is the basic function for data retrieving. It reads the weather information of an airport from XML file on National Weather Service website (e.g., <a href="https://w1.weather.gov/xml/current_obs/KAMW.xml" class="uri">https://w1.weather.gov/xml/current_obs/KAMW.xml</a>), and output a single row dataframe of location, station_id, latitude, longitude, observation_time, and selceted types of the weather elements.</p>
+<p>Description of input parameters are as follows:</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">id</td>
+<td align="left">one 4-letter airport code</td>
+<td align="left">chr</td>
+</tr>
+<tr class="even">
+<td align="left">type</td>
+<td align="left">a vector of weather elements</td>
+<td align="left">chr vector</td>
+</tr>
+</tbody>
+</table>
+<p>The possibe types of elements the function can deal with are</p>
+<ul>
+<li>weather</li>
+<li>temp_f</li>
+<li>wind_mph</li>
+<li>wind_dir</li>
+<li>relative_humidity</li>
+<li>pressure_in</li>
+<li>visibility_mi</li>
+<li>dewpoint_f</li>
+</ul>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"> <span class="kw"><a href="../reference/current_weather.html">current_weather</a></span>(<span class="st">"KAMW"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"wind_mph"</span>, <span class="st">"temp_f"</span>, <span class="st">"relative_humidity"</span>))</a></code></pre></div>
+<table class="table table table-striped">
+<thead><tr>
+<th style="text-align:left;">
+location
+</th>
+<th style="text-align:left;">
+station_id
+</th>
+<th style="text-align:right;">
+latitude
+</th>
+<th style="text-align:right;">
+longitude
+</th>
+<th style="text-align:left;">
+observation_time
+</th>
+<th style="text-align:left;">
+wind_mph
+</th>
+<th style="text-align:left;">
+temp_f
+</th>
+</tr></thead>
+<tbody><tr>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:right;">
+41.99056
+</td>
+<td style="text-align:right;">
+-93.61889
+</td>
+<td style="text-align:left;">
+Last Updated on Apr 27 2019, 4:53 am CDT
+</td>
+<td style="text-align:left;">
+10.4
+</td>
+<td style="text-align:left;">
+45.0
+</td>
+</tr></tbody>
+</table>
 </div>
 <div id="current_weather_moreid_vector-type" class="section level3">
 <h3 class="hasAnchor">
 <a href="#current_weather_moreid_vector-type" class="anchor"></a>current_weather_more(id_vector, type)</h3>
+<p>The <code>current_weather_more</code> function calls the <code>current_weather</code> function to retriving weather elements for multiple airports, and output integrated dataframe for multiple airports.</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">id</td>
+<td align="left">one 4-letter airport code</td>
+<td align="left">chr vector</td>
+</tr>
+<tr class="even">
+<td align="left">type</td>
+<td align="left">a vector of weather elements</td>
+<td align="left">chr vector</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"></a>
+<a class="sourceLine" id="cb4-2" title="2"><span class="kw"><a href="../reference/current_weather_more.html">current_weather_more</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"wind_mph"</span>, <span class="st">"temp_f"</span>, <span class="st">"relative_humidity"</span>))</a></code></pre></div>
+<table class="table table table-striped">
+<thead><tr>
+<th style="text-align:left;">
+location
+</th>
+<th style="text-align:left;">
+station_id
+</th>
+<th style="text-align:right;">
+latitude
+</th>
+<th style="text-align:right;">
+longitude
+</th>
+<th style="text-align:left;">
+observation_time
+</th>
+<th style="text-align:left;">
+wind_mph
+</th>
+<th style="text-align:left;">
+temp_f
+</th>
+<th style="text-align:left;">
+relative_humidity
+</th>
+</tr></thead>
+<tbody>
+<tr>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:right;">
+41.99056
+</td>
+<td style="text-align:right;">
+-93.61889
+</td>
+<td style="text-align:left;">
+Last Updated on Apr 27 2019, 4:53 am CDT
+</td>
+<td style="text-align:left;">
+10.4
+</td>
+<td style="text-align:left;">
+45.0
+</td>
+<td style="text-align:left;">
+83
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Atlantic, IA
+</td>
+<td style="text-align:left;">
+KAIO
+</td>
+<td style="text-align:right;">
+41.40000
+</td>
+<td style="text-align:right;">
+-95.05000
+</td>
+<td style="text-align:left;">
+Last Updated on Apr 27 2019, 5:55 am CDT
+</td>
+<td style="text-align:left;">
+16.1
+</td>
+<td style="text-align:left;">
+46.0
+</td>
+<td style="text-align:left;">
+93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Cedar Rapids Airport, IA
+</td>
+<td style="text-align:left;">
+KCID
+</td>
+<td style="text-align:right;">
+41.88295
+</td>
+<td style="text-align:right;">
+-91.72456
+</td>
+<td style="text-align:left;">
+Last Updated on Apr 27 2019, 5:52 am CDT
+</td>
+<td style="text-align:left;">
+9.2
+</td>
+<td style="text-align:left;">
+44.0
+</td>
+<td style="text-align:left;">
+93
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+Chariton, IA
+</td>
+<td style="text-align:left;">
+KCNC
+</td>
+<td style="text-align:right;">
+41.03333
+</td>
+<td style="text-align:right;">
+-93.36667
+</td>
+<td style="text-align:left;">
+Last Updated on Apr 27 2019, 5:55 am CDT
+</td>
+<td style="text-align:left;">
+20.7
+</td>
+<td style="text-align:left;">
+46.0
+</td>
+<td style="text-align:left;">
+82
+</td>
+</tr>
+</tbody>
+</table>
 </div>
 <div id="plot_position" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plot_position" class="anchor"></a>plot_position()</h3>
-</div>
-<div id="plot_temp_history" class="section level3">
-<h3 class="hasAnchor">
-<a href="#plot_temp_history" class="anchor"></a>plot_temp_history()</h3>
+<p>The<code>plot_position</code> function plot one weather component of the airports chosen by user and the user’s position on the map of US.</p>
+<p>Description of input parameters are as follows:</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">id_vector</td>
+<td align="left">a vector of multiple airport codes</td>
+<td align="left">chr vector</td>
+</tr>
+<tr class="even">
+<td align="left">type</td>
+<td align="left">a weather elements</td>
+<td align="left">chr</td>
+</tr>
+<tr class="odd">
+<td align="left">you.long</td>
+<td align="left">user provided longitude</td>
+<td align="left">num</td>
+</tr>
+<tr class="even">
+<td align="left">you.lat</td>
+<td align="left">user provided latitude</td>
+<td align="left">num</td>
+</tr>
+<tr class="odd">
+<td align="left">number</td>
+<td align="left">number= true: this element is numeric</td>
+<td align="left">logical</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/plot_position.html">plot_position</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>), <span class="dt">type =</span> <span class="st">"temp_f"</span>, <span class="dt">you.long =</span> <span class="dv">-100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">number =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="my-vignette_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 </div>
 <div id="plot_weather" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plot_weather" class="anchor"></a>plot_weather()</h3>
+<p>The<code>plot_weather</code> function plot one weather component of several airports on the map of US. The first argument is a vector contains</p>
+<p>Description of input parameters are as follows:</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">id_vector</td>
+<td align="left">a vector of multiple airport codes</td>
+<td align="left">chr vector</td>
+</tr>
+<tr class="even">
+<td align="left">type</td>
+<td align="left">a weather element</td>
+<td align="left">chr</td>
+</tr>
+<tr class="odd">
+<td align="left">label</td>
+<td align="left">lable= TRUE: label airport code on the plot</td>
+<td align="left">logical</td>
+</tr>
+<tr class="even">
+<td align="left">number</td>
+<td align="left">number= TRUE: this element is numeric</td>
+<td align="left">logica</td>
+</tr>
+</tbody>
+</table>
+<p>The component can be factorial type, such as “weather”,</p>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="../reference/plot_weather.html">plot_weather</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),</a>
+<a class="sourceLine" id="cb6-2" title="2">            <span class="dt">type =</span> <span class="st">"weather"</span>,</a>
+<a class="sourceLine" id="cb6-3" title="3">            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<p><img src="my-vignette_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
+<p>or numerical/continuous type, sush as “temp_f”</p>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="../reference/plot_weather.html">plot_weather</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),</a>
+<a class="sourceLine" id="cb7-2" title="2">            <span class="dt">type =</span> <span class="st">"temp_f"</span>,</a>
+<a class="sourceLine" id="cb7-3" title="3">            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<p><img src="my-vignette_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 </div>
 <div id="plot_weather_us" class="section level3">
 <h3 class="hasAnchor">
 <a href="#plot_weather_us" class="anchor"></a>plot_weather_us()</h3>
+<p>The <code>plot_weather_us</code> function plot one component of all airports and the user-provided position on the map of US with contour lines. The component has to be continues, such as “temp_c”.</p>
+<p>Description of input parameters are as follows:</p>
+<table class="table">
+<thead><tr class="header">
+<th align="left">Parameter</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
+</tr></thead>
+<tbody>
+<tr class="odd">
+<td align="left">type</td>
+<td align="left">a weather elements</td>
+<td align="left">chr</td>
+</tr>
+<tr class="even">
+<td align="left">you.long</td>
+<td align="left">user provided longitude</td>
+<td align="left">num</td>
+</tr>
+<tr class="odd">
+<td align="left">you.lat</td>
+<td align="left">user provided latitude</td>
+<td align="left">num</td>
+</tr>
+<tr class="even">
+<td align="left">bin</td>
+<td align="left">the binwidth of the contour lines</td>
+<td align="left">num</td>
+</tr>
+</tbody>
+</table>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="../reference/plot_weather_us.html">plot_weather_us</a></span>(<span class="dt">type =</span> <span class="st">"temp_c"</span>, <span class="dt">you.long =</span> <span class="dv">-100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">bin =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<p>It takes relaively long time to run this function. Below is a previous result as a demonstration.</p>
+<p><img src="../man/figures/plot_weather_us-1.png" width="90%"></p>
 </div>
 <div id="obhistory" class="section level3">
 <h3 class="hasAnchor">
 <a href="#obhistory" class="anchor"></a>obhistory()</h3>
-<p>Usually, the <code>weather condition</code> (Sunny, Fog, etc..) and <code>air temperature</code>( in degrees Fahrenheit) are two most important elements in weather data. As a tiny example, obhistory() is able to retirve a table containing time, weather and temperature.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">KAMW_Table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/obhistory.html">obhistory</a></span>(<span class="st">"KAMW"</span>)
-pander<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/pander/topics/pandoc.table.return">pandoc.table</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(KAMW_Table))</code></pre></div>
-<table class="table">
-<caption>Table continues below</caption>
-<colgroup>
-<col width="9%">
-<col width="11%">
-<col width="30%">
-<col width="30%">
-<col width="12%">
-</colgroup>
-<thead><tr class="header">
-<th align="center">date</th>
-<th align="center">time</th>
-<th align="center">localtime</th>
-<th align="center">time_UTC</th>
-<th align="center">Weather</th>
+<p>Usually, the <code>weather condition</code> (Sunny, Fog, etc..) and <code>air temperature</code>( in degrees Fahrenheit) are two most important elements in weather data. As a tiny tool, obhistory() is able to retirve 3 day history of weather and temperature of one location. This function extract a table from HTML and select weather and air tempereture as the variables of interest. Output is a dataframe of 9 columns.</p>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="../reference/obhistory.html">obhistory</a></span>(<span class="st">"KAMW"</span>)</a></code></pre></div>
+<table class="table table table-striped">
+<thead><tr>
+<th style="text-align:left;">
+code
+</th>
+<th style="text-align:left;">
+loc_name
+</th>
+<th style="text-align:left;">
+date
+</th>
+<th style="text-align:left;">
+time
+</th>
+<th style="text-align:left;">
+localtime
+</th>
+<th style="text-align:left;">
+time_UTC
+</th>
+<th style="text-align:left;">
+Weather
+</th>
+<th style="text-align:right;">
+Temperature
+</th>
+<th style="text-align:left;">
+hday
+</th>
 </tr></thead>
 <tbody>
-<tr class="odd">
-<td align="center">23</td>
-<td align="center">23:53</td>
-<td align="center">2019-04-23 23:53:00</td>
-<td align="center">2019-04-23 18:53:00</td>
-<td align="center">Fair</td>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+05:53
+</td>
+<td style="text-align:left;">
+2019-04-24 05:53:00
+</td>
+<td style="text-align:left;">
+2019-04-24 00:53:00
+</td>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+37
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
 </tr>
-<tr class="even">
-<td align="center">24</td>
-<td align="center">00:53</td>
-<td align="center">2019-04-24 00:53:00</td>
-<td align="center">2019-04-23 19:53:00</td>
-<td align="center">Fair</td>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+06:53
+</td>
+<td style="text-align:left;">
+2019-04-24 06:53:00
+</td>
+<td style="text-align:left;">
+2019-04-24 01:53:00
+</td>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+38
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
 </tr>
-<tr class="odd">
-<td align="center">24</td>
-<td align="center">01:53</td>
-<td align="center">2019-04-24 01:53:00</td>
-<td align="center">2019-04-23 20:53:00</td>
-<td align="center">Fair</td>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+07:53
+</td>
+<td style="text-align:left;">
+2019-04-24 07:53:00
+</td>
+<td style="text-align:left;">
+2019-04-24 02:53:00
+</td>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
 </tr>
-<tr class="even">
-<td align="center">24</td>
-<td align="center">02:53</td>
-<td align="center">2019-04-24 02:53:00</td>
-<td align="center">2019-04-23 21:53:00</td>
-<td align="center">Fair</td>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+08:53
+</td>
+<td style="text-align:left;">
+2019-04-24 08:53:00
+</td>
+<td style="text-align:left;">
+2019-04-24 03:53:00
+</td>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
 </tr>
-<tr class="odd">
-<td align="center">24</td>
-<td align="center">03:53</td>
-<td align="center">2019-04-24 03:53:00</td>
-<td align="center">2019-04-23 22:53:00</td>
-<td align="center">Fair</td>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+09:53
+</td>
+<td style="text-align:left;">
+2019-04-24 09:53:00
+</td>
+<td style="text-align:left;">
+2019-04-24 04:53:00
+</td>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+57
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
 </tr>
-<tr class="even">
-<td align="center">24</td>
-<td align="center">04:53</td>
-<td align="center">2019-04-24 04:53:00</td>
-<td align="center">2019-04-23 23:53:00</td>
-<td align="center">Fair</td>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+24
+</td>
+<td style="text-align:left;">
+11:53
+</td>
+<td style="text-align:left;">
+2019-04-24 11:53:00
+</td>
+<td style="text-align:left;">
+2019-04-24 06:53:00
+</td>
+<td style="text-align:left;">
+NA
+</td>
+<td style="text-align:right;">
+62
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
 </tr>
 </tbody>
 </table>
+<p>The description of each variable is as follows:</p>
 <table class="table">
-<colgroup>
-<col width="19%">
-<col width="19%">
-</colgroup>
 <thead><tr class="header">
-<th align="center">Temperature</th>
-<th align="center">hday</th>
+<th align="left">Variable</th>
+<th align="left">Description</th>
+<th align="left">Type</th>
 </tr></thead>
 <tbody>
 <tr class="odd">
-<td align="center">47</td>
-<td align="center">first24hours</td>
+<td align="left">code</td>
+<td align="left">4 character airport code</td>
+<td align="left">chr</td>
 </tr>
 <tr class="even">
-<td align="center">43</td>
-<td align="center">first24hours</td>
+<td align="left">loc_name</td>
+<td align="left">name of the airport location</td>
+<td align="left">chr</td>
 </tr>
 <tr class="odd">
-<td align="center">41</td>
-<td align="center">first24hours</td>
+<td align="left">date</td>
+<td align="left">the same as in the original html table</td>
+<td align="left">chr</td>
 </tr>
 <tr class="even">
-<td align="center">40</td>
-<td align="center">first24hours</td>
+<td align="left">time</td>
+<td align="left">the same as in the original html table</td>
+<td align="left">chr</td>
 </tr>
 <tr class="odd">
-<td align="center">40</td>
-<td align="center">first24hours</td>
+<td align="left">localtime</td>
+<td align="left">the local time of observations</td>
+<td align="left">chr</td>
 </tr>
 <tr class="even">
-<td align="center">40</td>
-<td align="center">first24hours</td>
+<td align="left">time_UTC</td>
+<td align="left">UTC time</td>
+<td align="left">POSIXct</td>
+</tr>
+<tr class="odd">
+<td align="left">Weather</td>
+<td align="left">the Weather</td>
+<td align="left">Factor</td>
+</tr>
+<tr class="even">
+<td align="left">Temperature</td>
+<td align="left">define the 1st, 2nd and 3rd 24 hours</td>
+<td align="left">Factor</td>
 </tr>
 </tbody>
 </table>
-<p>This function extract tables from HTML and select air tempereture as the variable of interest.</p>
-<p>The tabe contains 7 columns,</p>
-<table class="table">
-<thead><tr class="header">
-<th align="right">Variable</th>
-<th align="right">Description</th>
-<th align="center">Type</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="right">day</td>
-<td align="right">correspond to the date, 1 as the earliest date</td>
-<td align="center">factor</td>
-</tr>
-<tr class="even">
-<td align="right">date</td>
-<td align="right">the same as in the original html table</td>
-<td align="center">chr</td>
-</tr>
-<tr class="odd">
-<td align="right">time</td>
-<td align="right">the same as in the original html table</td>
-<td align="center">chr</td>
-</tr>
-<tr class="even">
-<td align="right">fulltime</td>
-<td align="right">the full formated time</td>
-<td align="center">POSIXct</td>
-</tr>
-<tr class="odd">
-<td align="right">Weather</td>
-<td align="right">the Weather</td>
-<td align="center">Factor</td>
-</tr>
-<tr class="even">
-<td align="right">Temperature</td>
-<td align="right">define the 1st, 2nd and 3rd 24 hours</td>
-<td align="center">Factor</td>
-</tr>
-</tbody>
-</table>
-<p>Note that the returned dataframe has various number of rows, as the observation frequency is not fixed at each airport site. For instance, KAMW, where the weather data collected every hour will return 72 rows, while KORD, where data collected every 20 minutes, will return 216 rows.</p>
-<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">KORD_Table &lt;-<span class="st"> </span><span class="kw"><a href="../reference/obhistory.html">obhistory</a></span>(<span class="st">"KORD"</span>)
-pander<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/pander/topics/pandoc.table.return">pandoc.table</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/utils/topics/head">head</a></span>(KORD_Table))</code></pre></div>
-<table class="table">
-<caption>Table continues below</caption>
-<colgroup>
-<col width="9%">
-<col width="10%">
-<col width="29%">
-<col width="29%">
-<col width="20%">
-</colgroup>
-<thead><tr class="header">
-<th align="center">date</th>
-<th align="center">time</th>
-<th align="center">localtime</th>
-<th align="center">time_UTC</th>
-<th align="center">Weather</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="center">23</td>
-<td align="center">23:51</td>
-<td align="center">2019-04-23 23:51:00</td>
-<td align="center">2019-04-23 18:51:00</td>
-<td align="center">Mostly Cloudy</td>
-</tr>
-<tr class="even">
-<td align="center">24</td>
-<td align="center">00:51</td>
-<td align="center">2019-04-24 00:51:00</td>
-<td align="center">2019-04-23 19:51:00</td>
-<td align="center">Partly Cloudy</td>
-</tr>
-<tr class="odd">
-<td align="center">24</td>
-<td align="center">01:51</td>
-<td align="center">2019-04-24 01:51:00</td>
-<td align="center">2019-04-23 20:51:00</td>
-<td align="center">Mostly Cloudy</td>
-</tr>
-<tr class="even">
-<td align="center">24</td>
-<td align="center">02:51</td>
-<td align="center">2019-04-24 02:51:00</td>
-<td align="center">2019-04-23 21:51:00</td>
-<td align="center">Mostly Cloudy</td>
-</tr>
-<tr class="odd">
-<td align="center">24</td>
-<td align="center">03:51</td>
-<td align="center">2019-04-24 03:51:00</td>
-<td align="center">2019-04-23 22:51:00</td>
-<td align="center">Mostly Cloudy</td>
-</tr>
-<tr class="even">
-<td align="center">24</td>
-<td align="center">04:51</td>
-<td align="center">2019-04-24 04:51:00</td>
-<td align="center">2019-04-23 23:51:00</td>
-<td align="center">Mostly Cloudy</td>
-</tr>
-</tbody>
-</table>
-<table class="table">
-<colgroup>
-<col width="19%">
-<col width="19%">
-</colgroup>
-<thead><tr class="header">
-<th align="center">Temperature</th>
-<th align="center">hday</th>
-</tr></thead>
-<tbody>
-<tr class="odd">
-<td align="center">50</td>
-<td align="center">first24hours</td>
-</tr>
-<tr class="even">
-<td align="center">49</td>
-<td align="center">first24hours</td>
-</tr>
-<tr class="odd">
-<td align="center">48</td>
-<td align="center">first24hours</td>
-</tr>
-<tr class="even">
-<td align="center">47</td>
-<td align="center">first24hours</td>
-</tr>
-<tr class="odd">
-<td align="center">44</td>
-<td align="center">first24hours</td>
-</tr>
-<tr class="even">
-<td align="center">43</td>
-<td align="center">first24hours</td>
-</tr>
-</tbody>
-</table>
-<p>An unusual case is that when the user run functions exactly at the time of an observation time, then the html will have one data point less than the normal cases, so does the rerurned dataframe.</p>
+<p>Note that the returned dataframe has various number of rows, as the observation frequency is not fixed at each airport site. For instance, KAMW, where the weather data collected every hour will return 72 rows, while KORD, where data updated every 20 minutes, will return 216 rows. Furthermore, at some locations, the obsevation time points are not evenly distributed. So it will be important that the table contains detaied time information. A POSIXct formatted time variable (in UTC) is also generated based on data. If the user need to compare data from different time zones, the UTC time will make things tidier.</p>
 </div>
-<div id="plot_temp_history-1" class="section level3">
+<div id="plot_temp_history" class="section level3">
 <h3 class="hasAnchor">
-<a href="#plot_temp_history-1" class="anchor"></a>plot_temp_history()</h3>
-<p>It is insteresting to test</p>
+<a href="#plot_temp_history" class="anchor"></a>plot_temp_history()</h3>
+<p>It is interesting to explore the time series of air temperature for 3 days until current time. <code><a href="../reference/plot_temp_history.html">plot_temp_history()</a></code> can easily generate a ggplot figure.with the airport location name in the title. The plot was grouped and colorred by each 24 hours.</p>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="../reference/plot_temp_history.html">plot_temp_history</a></span>(<span class="st">"KAMW"</span>)</a></code></pre></div>
+<p><img src="my-vignette_files/figure-html/unnamed-chunk-18-1.png" width="700"></p>
 </div>
 <div id="runshiny" class="section level3">
 <h3 class="hasAnchor">
 <a href="#runshiny" class="anchor"></a>runShiny()</h3>
+<p>A shiny app was designed to demonstrate selected functions in the <code>airportweather</code> package. The spatial visualization tab, “Weather information on map”, call <code>current_weather_more</code> to show selected weather variables for single or multiple airports on interactive Maps with <code>leaflet</code>, and generate an interated table for multiple locations as well.</p>
+<div class="sourceCode" id="cb11"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb11-1" title="1"><span class="kw"><a href="../reference/runShiny.html">runShiny</a></span>()</a></code></pre></div>
+<p><img src="../man/figures/map.png" width="100%"><img src="../man/figures/info.png" width="100%"></p>
+<p>The temporal visualization tab, “History weather at one location”, call <code>plot_temp_history</code> to generate a timeseries plot of temperature for past 3 days at one airport location, and call <code>obhistory</code> to generate a table of weather and tempareture history of the past 3 days.</p>
+<p><img src="../man/figures/temp_plot.png" width="100%"><img src="../man/figures/temp_table.png" width="100%"></p>
 </div>
 </div>
 <div id="future-work" class="section level2">
 <h2 class="hasAnchor">
 <a href="#future-work" class="anchor"></a>future work</h2>
-<p>Do we know names of all possible types of weather data?</p>
 <p>We can retrieve and plot more continues data such as Relative Humidity for the past 3 days.</p>
-<p>intergrate 3 tabs ( location, leaflet, timeseries) in one shiny app, as the project requirment need a complicated shiny.</p>
 </div>
   </div>
 
@@ -466,7 +860,7 @@ pander<span class="op">::</span><span class="kw"><a href="https://www.rdocumenta
 <a href="#tocnav" class="anchor"></a>Contents</h2>
       <ul class="nav nav-pills nav-stacked">
 <li><a href="#introduction">Introduction</a></li>
-      <li><a href="#package-data-preparation">package data preparation</a></li>
+      <li><a href="#package-data-preparation">Package data preparation</a></li>
       <li><a href="#installation">Installation</a></li>
       <li><a href="#functions">Functions</a></li>
       <li><a href="#future-work">future work</a></li>
