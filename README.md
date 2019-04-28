@@ -5,7 +5,7 @@
 [![Coverage status](https://codecov.io/gh/floatgreen/airportweather/branch/master/graph/badge.svg)](https://codecov.io/github/floatgreen/airportweather?branch=master)
 
 
-The goal of airportweather is to read the current weather component(s) from "https://w1.weather.gov/xml/current_obs/" and record the information as data frame or plot it on an US map.
+The goal of airportweather is to read the current weather component(s) from "https://w1.weather.gov/xml/current_obs/" and record the information as a data frame or plot it on a US map. Find more information at "https://floatgreen.github.io/airportweather/".
 
 ## Installation
 
@@ -20,7 +20,7 @@ install_github("floatgreen/airportweather")
 
 ## Example
 
-Followings are some examples which shows you how to use this package:  
+Followings are some examples which show you how to use this package:  
 Read the data of one airport.  
 If the components' names do not exist or the data is missing, the result data frame shows NA(s).
 
@@ -54,7 +54,7 @@ Plot one component of the airports chosen by user and the user's position on the
 plot_position(c("KAMW", "KAIO"), type = "temp_f", you.long = -100, you.lat = 35,number = TRUE)
 ```
 
-Plot one component of all airports and the user's position on the map of US with contour lines. It takes a couple of seconds to run. The component has to be continues.
+Plot one component of all airports and the user's position on the map of US with contour lines. It takes a couple of seconds to run. The component has to be continuous.
 
 ``` r
 plot_weather_us(type = "temp_c",you.long = -100, you.lat = 35,bin = 0.5)
@@ -82,7 +82,7 @@ runShiny()
 
 ![alt text](man/figures/launch.png "Launch shiny app")
 
-Choose the airport code by typing the letter or just choose from menu. When you type letter, the menu will show all choice with the letters. You can choose multyple airport.
+Choose the airport code by typing the letter or just choose from menu. When you type letter, the menu will show all choice with the letters. You can choose multiple airport.
 
 
 ![alt text](man/figures/code.png "Choose airport code")
@@ -99,7 +99,7 @@ Below the map, you can also see a table with selected weather information as wel
 
 ![alt text](man/figures/info.png "Information of selected airport")
 
-When you swith to the tab `History weather at one location`, you will see a reminder if you choose more than one location. The tab shows the lastest 72h temperature for an airport, so you can only choose one location.
+When you switch to the tab `History weather at one location`, you will see a reminder if you choose more than one location. The tab shows the lastest 72h temperature for an airport, so you can only choose one location.
 
 ![alt text](man/figures/history.png "Reminder for error")
 
@@ -107,7 +107,7 @@ The history temperature plot shows 3 days temperature records, which presented a
 
 ![alt text](man/figures/temp_plot.png "Temperature plot for 72h")
 
-A detailed temperature history table is shown below the temperature plot. It include all temperature recorde for every hour. You can also search a certain time, weather or temperature in the search box.
+A detailed temperature history table is shown below the temperature plot. It includes all temperature records for every hour. You can also search a certain time, weather or temperature in the search box.
 
 ![alt text](man/figures/temp_table.png "Temperature table for 72h")
 
