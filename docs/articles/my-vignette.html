@@ -103,7 +103,7 @@
 <div id="package-data-preparation" class="section level2">
 <h2 class="hasAnchor">
 <a href="#package-data-preparation" class="anchor"></a>Package data preparation</h2>
-<p>The primer key of the weather data is <strong>4-letter airport code</strong> of airport locations. Scraping from the root page <a href="https://w1.weather.gov/xml/current_obs/" class="uri">https://w1.weather.gov/xml/current_obs/</a> , we have collected all current airport code together with the name of the location and the state/territory abbreviations correspond to the code. The data set <code>all_code.rda</code> contains 2,367 US airport codes from 58 state/territory. This data is used as the package example data to provide currently valid codes of US airports. However, if new codes are added in the National Weather Service site, the <code>airportweather</code> package will still work as long as the format of webpage and structure of the site keeps the same.</p>
+<p>The primer key of the weather data is <strong>4-letter airport code</strong> of airport locations. Scraping from the root page <a href="https://w1.weather.gov/xml/current_obs/" class="uri">https://w1.weather.gov/xml/current_obs/</a> , we have collected all current airport code together with the name of the location and the state/territory abbreviations correspond to the code. The data set <code>all_code.rda</code> contains 2,367 US airport codes from 58 states/territories. This data is used as the package example data to provide currently valid codes of US airports. However, if new codes are added in the National Weather Service site, the <code>airportweather</code> package will still work as long as the format of webpage and structure of the site keeps the same.</p>
 <table class="table table table-striped">
 <thead><tr>
 <th style="text-align:left;">
@@ -554,7 +554,7 @@ Last Updated on Apr 28 2019, 11:54 pm CDT
 <div id="obhistory" class="section level3">
 <h3 class="hasAnchor">
 <a href="#obhistory" class="anchor"></a>obhistory()</h3>
-<p>The function <code>obhistory</code> is to retrieve 3 days history of weather and temperature of one location, as in general, the “weather condition” (Sunny, Fog, etc..) and “air temperature” ( in degrees Fahrenheit) are two most important elements in weather data. The input of this function is the <code>id</code>, one 4-letter airport code; the output is a data frame of 9 columns.</p>
+<p>The function <code>obhistory</code> is to retrieve 3 days history of weather and temperature of one location, as in general, the “weather condition” (Sunny, Fog, etc..) and “air temperature” ( in degrees Fahrenheit) are the two most important elements in weather data. The input of this function is the <code>id</code>, one 4-letter airport code; the output is a data frame of 9 columns.</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/obhistory.html">obhistory</a></span>(<span class="st">"KAMW"</span>)</a></code></pre></div>
 <table class="table table table-striped">
 <thead><tr>
@@ -598,42 +598,13 @@ Ames, Ames Municipal Airport, IA
 26
 </td>
 <td style="text-align:left;">
-00:53
-</td>
-<td style="text-align:left;">
-2019-04-26 00:53:00
-</td>
-<td style="text-align:left;">
-2019-04-25 19:53:00
-</td>
-<td style="text-align:left;">
-Fair
-</td>
-<td style="text-align:right;">
-53
-</td>
-<td style="text-align:left;">
-first24hours
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-KAMW
-</td>
-<td style="text-align:left;">
-Ames, Ames Municipal Airport, IA
-</td>
-<td style="text-align:left;">
-26
-</td>
-<td style="text-align:left;">
 01:53
 </td>
 <td style="text-align:left;">
-2019-04-26 01:53:00
+2019-04-25 01:53:00
 </td>
 <td style="text-align:left;">
-2019-04-25 20:53:00
+2019-04-24 20:53:00
 </td>
 <td style="text-align:left;">
 Fair and Breezy
@@ -659,10 +630,10 @@ Ames, Ames Municipal Airport, IA
 02:53
 </td>
 <td style="text-align:left;">
-2019-04-26 02:53:00
+2019-04-25 02:53:00
 </td>
 <td style="text-align:left;">
-2019-04-25 21:53:00
+2019-04-24 21:53:00
 </td>
 <td style="text-align:left;">
 Fair
@@ -688,10 +659,10 @@ Ames, Ames Municipal Airport, IA
 03:53
 </td>
 <td style="text-align:left;">
-2019-04-26 03:53:00
+2019-04-25 03:53:00
 </td>
 <td style="text-align:left;">
-2019-04-25 22:53:00
+2019-04-24 22:53:00
 </td>
 <td style="text-align:left;">
 Fair
@@ -717,10 +688,10 @@ Ames, Ames Municipal Airport, IA
 04:53
 </td>
 <td style="text-align:left;">
-2019-04-26 04:53:00
+2019-04-25 04:53:00
 </td>
 <td style="text-align:left;">
-2019-04-25 23:53:00
+2019-04-24 23:53:00
 </td>
 <td style="text-align:left;">
 Fair
@@ -746,10 +717,39 @@ Ames, Ames Municipal Airport, IA
 05:53
 </td>
 <td style="text-align:left;">
-2019-04-26 05:53:00
+2019-04-25 05:53:00
 </td>
 <td style="text-align:left;">
-2019-04-26 00:53:00
+2019-04-25 00:53:00
+</td>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+44
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:left;">
+06:53
+</td>
+<td style="text-align:left;">
+2019-04-25 06:53:00
+</td>
+<td style="text-align:left;">
+2019-04-25 01:53:00
 </td>
 <td style="text-align:left;">
 Fair
@@ -847,7 +847,7 @@ first24hours
 <div id="future-work" class="section level2">
 <h2 class="hasAnchor">
 <a href="#future-work" class="anchor"></a>Future work</h2>
-<p>We can retrieve and plot more continues data such as “Relative Humidity” for the past 3 days.</p>
+<p>We can retrieve and plot more continuous data such as “Relative Humidity” for the past 3 days.</p>
 </div>
   </div>
 

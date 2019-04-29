@@ -53,7 +53,7 @@ Thanks to the well-organized weather data structure from the National Weather Se
 
 ## Package data preparation
 
-The primer key of the weather data is **4-letter airport code** of airport locations. Scraping from the root page https://w1.weather.gov/xml/current_obs/ , we have collected all current airport code together with the name of the location and the state/territory abbreviations correspond to the code. The data set `all_code.rda` contains 2,367 US airport codes from 58 state/territory. This data is used as the package example data to provide currently valid codes of US airports. However, if new codes are added in the National Weather Service site, the `airportweather` package will still work as long as the format of webpage and structure of the site keeps the same.
+The primer key of the weather data is **4-letter airport code** of airport locations. Scraping from the root page https://w1.weather.gov/xml/current_obs/ , we have collected all current airport code together with the name of the location and the state/territory abbreviations correspond to the code. The data set `all_code.rda` contains 2,367 US airport codes from 58 states/territories. This data is used as the package example data to provide currently valid codes of US airports. However, if new codes are added in the National Weather Service site, the `airportweather` package will still work as long as the format of webpage and structure of the site keeps the same.
 
 
 ```{r, results = "asis", echo = FALSE}
@@ -225,7 +225,7 @@ knitr::include_graphics("../man/figures/plot_weather_us-1.png")
 
 ### obhistory()
 
-The function `obhistory` is to retrieve 3 days history of weather and temperature of one location, as in general, the "weather condition" (Sunny, Fog, etc..) and "air temperature" ( in degrees Fahrenheit) are two most important elements in weather data. The input of this function is the `id`, one 4-letter airport code; the output is a data frame of 9 columns.
+The function `obhistory` is to retrieve 3 days history of weather and temperature of one location, as in general, the "weather condition" (Sunny, Fog, etc..) and "air temperature" ( in degrees Fahrenheit) are the two most important elements in weather data. The input of this function is the `id`, one 4-letter airport code; the output is a data frame of 9 columns.
 
 ```{r,eval = FALSE }
 obhistory("KAMW")
@@ -339,4 +339,4 @@ knitr::include_graphics("../man/figures/temp_table.png")
 
 
 ## Future work
-We can retrieve and plot more continues data such as "Relative Humidity" for the past 3 days.
+We can retrieve and plot more continuous data such as "Relative Humidity" for the past 3 days.
