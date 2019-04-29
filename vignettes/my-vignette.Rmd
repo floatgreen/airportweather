@@ -35,14 +35,14 @@ The National Weather Service site  https://w1.weather.gov/xml/current_obs/ provi
 knitr::include_graphics("../man/figures/select_state_location.png")
 ```
 
-With the XML link for an airport code (e.g. KAMW), users can access current weather report for the airport location. Different kinds of weather associated data are shown on the webpage. For instance, the page displays   
+With the XML link for an airport code (e.g., KAMW), users can access current weather report for the airport location. Different kinds of weather associated data are shown on the webpage. For instance, the page displays   
 
 ```{r, out.width = '70%', fig.align="center", echo = FALSE}
 knitr::include_graphics("../man/figures/Ames_current.png")
 ```
 
 
-Actually, the XML file contains more than 20 different types of weather data, as well as the location and time information of the observations. Further more, a link to "2 Day History" gives access of an HTML page containing weather history data for past 72 hours. 
+The XML file contains more than 20 different types of weather data, as well as the location and time information of the observations. Furthermore, a link to "2 Day History" gives access of an HTML page containing weather history data for the past 72 hours. 
 
 ```{r, out.width = '80%', fig.align="center", echo = FALSE}
 knitr::include_graphics("../man/figures/2dayhist.png")
@@ -53,7 +53,7 @@ Thanks to the well-organized weather data structure from the National Weather Se
 
 ## Package data preparation
 
-The primer key of the weather data is **4-letter airport code** of airport locations. Scraping from the root page https://w1.weather.gov/xml/current_obs/ , we have collected all current airport code together with the name of location and the state/territory abbreviations correspond to the code. The data set `all_code.rda` contains 2,367 US airport codes from 58 state/territory. This data is used as the package example data to provide currently valid codes of US airports. However, if new codes are added in the National Weather Service site, the `airportweather` package will still work as long as the format of webpage and structure of the site keeps the same.
+The primer key of the weather data is **4-letter airport code** of airport locations. Scraping from the root page https://w1.weather.gov/xml/current_obs/ , we have collected all current airport code together with the name of the location and the state/territory abbreviations correspond to the code. The data set `all_code.rda` contains 2,367 US airport codes from 58 state/territory. This data is used as the package example data to provide currently valid codes of US airports. However, if new codes are added in the National Weather Service site, the `airportweather` package will still work as long as the format of webpage and structure of the site keeps the same.
 
 
 ```{r, results = "asis", echo = FALSE}
@@ -115,7 +115,7 @@ kableExtra::kable(c_weather) %>% kableExtra::kable_styling(bootstrap_options = "
 
 ### current_weather_more()
 
-The `current_weather_more` function calls the `current_weather` function to retrieving weather elements from multiple airports, and output integrated data frame.
+The `current_weather_more` function calls the `current_weather` function to retrieve weather elements from multiple airports, and output integrated data frame.
 
 Description of input parameters is as follows:
 
@@ -199,7 +199,7 @@ plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
             
 ### plot_weather_us()
 
-The `plot_weather_us` function plot one component of all airports and the user's location on the map of the US with contour lines. The component has to be continues, such as "temp_c".
+The `plot_weather_us` function plot one component of all airports and the user's location on the map of the US with contour lines. The component has to be continuous, such as "temp_c".
 
 Description of input parameters is as follows:
 
@@ -214,7 +214,7 @@ Description of input parameters is as follows:
 ```{r, eval = FALSE }
 plot_weather_us(type = "temp_c", you.long = -100, you.lat = 35,bin = 0.5)
 ```
-It takes relatively long time to run this function. Below is a previous result as a demonstration.
+It takes a relatively long time to run this function. Below is a previous result as a demonstration.
 
 ```{r, out.width = '90%', echo = FALSE}
 knitr::include_graphics("../man/figures/plot_weather_us-1.png")
@@ -225,7 +225,7 @@ knitr::include_graphics("../man/figures/plot_weather_us-1.png")
 
 ### obhistory()
 
-The function `obhistory` is to retrieve 3 days history of weather and temperature of one location, as in general, the "weather condition" (Sunny, Fog, etc..) and "air temperature" ( in degrees Fahrenheit) are two most important elements in weather data. The input of this function is the `id`, one 4-letter airport code, the output is a data frame of 9 columns.
+The function `obhistory` is to retrieve 3 days history of weather and temperature of one location, as in general, the "weather condition" (Sunny, Fog, etc..) and "air temperature" ( in degrees Fahrenheit) are two most important elements in weather data. The input of this function is the `id`, one 4-letter airport code; the output is a data frame of 9 columns.
 
 ```{r,eval = FALSE }
 obhistory("KAMW")
@@ -237,7 +237,7 @@ KAMW_Table <- obhistory("KAMW")
 kableExtra::kable(head(KAMW_Table)) %>% kableExtra::kable_styling(bootstrap_options = "striped", full_width = F )
 ```
 
-The description of each columns is as follows:
+The description of each column is as follows:
 
 |Variable|Description|Type| 
 |:---|:---|:---|
@@ -250,12 +250,12 @@ The description of each columns is as follows:
 |Weather|the Weather|Factor|
 |Temperature|define the 1st, 2nd and 3rd 24 hours|Factor|
 
-Note that the returned data frame has various number of rows, as the observation frequency is not fixed at each airport site, and the observation time points are not evenly distributed. So it will be important that the table contains detailed time information. A POSIXct formatted time variable (in UTC) is also generated based on data. If the user needs to compare data from different time zones, the UTC time will make things tidier. 
+Note that the returned data frame has a various number of rows, as the observation frequency is not fixed at each airport site, and the observation time points are not evenly distributed. So it will be important that the table contains detailed time information. A POSIXct formatted time variable (in UTC) is also generated based on data. If the user needs to compare data from different time zones, the UTC time will make things tidier. 
 
 
 ### plot_temp_history()
 
-The function `plot_temp_history` is to generate the plot of air temperature for 3 days until the current time. The resulting plot has the airport location name in the title, local hours labled on X axis, and 3 lines each for one 24-hour.
+The function `plot_temp_history` is to generate the plot of air temperature for 3 days until the current time. The resulting plot has the airport location name in the title, local hours labeld on the X axis, and 3 lines each for one 24-hour.
 
 
 ```{r, eval= F }
@@ -286,7 +286,7 @@ knitr::include_graphics("../man/figures/launch.png")
 
 ```
 
-Choose the airport code by typing the letter or just choose from menu. When you type letter, the menu will show all choice with the letters. You can choose multyple airport.
+Choose the airport code by typing the letter or just choose from the menu. When you type letter, the menu will show all choice with the letters. You can choose multiple airports.
 
 
 ```{r, out.width = '50%',  fig.align="center", echo = FALSE}
@@ -310,14 +310,14 @@ knitr::include_graphics("../man/figures/map.png")
 ```
 
 
-Below the map, you can also see a table with selected weather information as well as airport location information for selected airport.
+Below the map, you can also see a table with selected weather information as well as airport location information for the selected airport.
 
 ```{r, out.width = '100%', echo = FALSE}
 knitr::include_graphics("../man/figures/info.png")
 ```
 
 
-When you swith to the tab History weather at one location, you will see a reminder if you choose more than one location. The tab shows the lastest 72h temperature for an airport, so you can only choose one location.
+When you switch to the tab History weather at one location, you will see a reminder if you choose more than one location. The tab shows the latest 72h temperature for an airport, so you can only choose one location.
 
 
 
@@ -331,7 +331,7 @@ knitr::include_graphics("../man/figures/temp_plot.png")
 ```
 
 
-A detailed temperature history table is shown below the temperature plot. It include all temperature recorde for every hour. You can also search a certain time, weather or temperature in the search box.
+A detailed temperature history table is shown below the temperature plot. It includes all temperature records for every hour. You can also search a certain time, weather or temperature in the search box.
 
 ```{r, out.width = '100%', echo = FALSE}
 knitr::include_graphics("../man/figures/temp_table.png")

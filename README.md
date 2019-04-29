@@ -82,7 +82,7 @@ runShiny()
 
 ![alt text](man/figures/launch.png "Launch shiny app")
 
-Choose the airport code by typing the letter or just choose from menu. When you type letter, the menu will show all choice with the letters. You can choose multiple airport.
+Choose the airport code by typing the letter or just choose from the menu. When you type letter, the menu will show all choice with the letters. You can choose multiple airports.
 
 
 ![alt text](man/figures/code.png "Choose airport code")
@@ -95,11 +95,11 @@ After selection of airport code and weather feature, a map with the airport posi
 
 ![alt text](man/figures/map.png "Map with airport")
 
-Below the map, you can also see a table with selected weather information as well as airport location information for selected airport.
+Below the map, you can also see a table with selected weather information as well as airport location information for the selected airport.
 
 ![alt text](man/figures/info.png "Information of selected airport")
 
-When you switch to the tab `History weather at one location`, you will see a reminder if you choose more than one location. The tab shows the lastest 72h temperature for an airport, so you can only choose one location.
+When you switch to the tab `History weather at one location`, you will see a reminder if you choose more than one location. The tab shows the latest 72h temperature for an airport, so you can only choose one location.
 
 ![alt text](man/figures/history.png "Reminder for error")
 
