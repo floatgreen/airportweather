@@ -74,10 +74,11 @@ obhistory <- function(id=NULL){
                            if_else(TZ %in% c("MDT","CST"), 6,
                                    if_else(TZ %in% c("PDT","MST"), 7,
                                            if_else(TZ%in% c("AKDT","PST"), 8,
-                                                   if_else(TZ == "AKST", 9,
+                                                   if_else(TZ %in% c("AKST", "HDT") , 9,
                                                            if_else(TZ == "HST",10,0)))))))
 
-  weather_table$time_UTC <-  weather_table$fulltime - hours(shift)
+
+  weather_table$time_UTC <-  weather_table$fulltime + hours(shift)
 
   # reverse the dataset
   weather_table<- weather_table %>% purrr::map_df(rev)
