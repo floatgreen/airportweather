@@ -22,7 +22,10 @@ current_weather <- function(id=NULL, type=NULL){
   assertthat::assert_that(length(id)==1,
                           msg = "id is not an airport ID, if you want to get weather information from more than one airport, please use current_weather_more")
   assertthat::assert_that(stringr::str_length(id) == 4,msg = "id is not an airport ID")
-  a <- xml2::read_xml(paste("https://w1.weather.gov/xml/current_obs/", id, ".xml", sep = ""))
+  url <- paste("https://w1.weather.gov/xml/current_obs/", id, ".xml", sep = "")
+  assertthat::assert_that(!(httr::http_error(httr::GET(url))),
+                          msg = "url is not valid, maybe not a correct ID")
+  a <- xml2::read_xml(url)
   b <- xml2::xml_children(a)
   name <- xml2::xml_name(b)
   text <- xml2::xml_text(b)
