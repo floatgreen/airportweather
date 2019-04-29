@@ -191,7 +191,7 @@ Anchorage, Lake Hood Seaplane Base
 <a href="#installation" class="anchor"></a>Installation</h2>
 <p>You can download the package <code>airportweather</code> from <a href="https://github.com/floatgreen/airportweather">github</a> , then install (build) it with ctrl+shift+B in Rstudio;</p>
 <p>Or you can also install the package using <code>devtools</code>:</p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" data-line-number="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"floatgreen/airportweather"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb1-1" title="1">devtools<span class="op">::</span><span class="kw"><a href="https://www.rdocumentation.org/packages/devtools/topics/reexports">install_github</a></span>(<span class="st">"floatgreen/airportweather"</span>)</a></code></pre></div>
 </div>
 <div id="functions" class="section level2">
 <h2 class="hasAnchor">
@@ -232,7 +232,7 @@ Anchorage, Lake Hood Seaplane Base
 <li>dewpoint_f</li>
 </ul>
 <p>Below is an example of calling this function to retrieve current “wind_mph”, “temp_f”, “relative_humidity” in “Ames, Ames Municipal Airport, IA (airport code”KAMW“)”.</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" data-line-number="1"> <span class="kw"><a href="../reference/current_weather.html">current_weather</a></span>(<span class="st">"KAMW"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"wind_mph"</span>, <span class="st">"temp_f"</span>, <span class="st">"relative_humidity"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb2-1" title="1"> <span class="kw"><a href="../reference/current_weather.html">current_weather</a></span>(<span class="st">"KAMW"</span>, <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"wind_mph"</span>, <span class="st">"temp_f"</span>, <span class="st">"relative_humidity"</span>))</a></code></pre></div>
 <table class="table table table-striped">
 <thead><tr>
 <th style="text-align:left;">
@@ -274,13 +274,13 @@ KAMW
 -93.61889
 </td>
 <td style="text-align:left;">
-Last Updated on Apr 28 2019, 11:53 pm CDT
+Last Updated on Apr 29 2019, 3:53 am CDT
 </td>
 <td style="text-align:left;">
-10.4
+4.6
 </td>
 <td style="text-align:left;">
-44.0
+46.0
 </td>
 <td style="text-align:left;">
 93
@@ -314,8 +314,8 @@ Last Updated on Apr 28 2019, 11:53 pm CDT
 </table>
 <p>Below is an example of calling this function to retrieve current “wind_mph”, “temp_f”, “relative_humidity” in three locations:</p>
 <p>“Ames, Ames Municipal Airport, IA (airport code”KAMW“)”, “Cedar Rapids Airport, IA (airport code”KCID“)”, and “Des Moines International Airport, IA (airport code”KDSM“)”.</p>
-<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" data-line-number="1"></a>
-<a class="sourceLine" id="cb3-2" data-line-number="2"><span class="kw"><a href="../reference/current_weather_more.html">current_weather_more</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KCID"</span>, <span class="st">"KDSM"</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"wind_mph"</span>, <span class="st">"temp_f"</span>, <span class="st">"relative_humidity"</span>))</a></code></pre></div>
+<div class="sourceCode" id="cb3"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb3-1" title="1"></a>
+<a class="sourceLine" id="cb3-2" title="2"><span class="kw"><a href="../reference/current_weather_more.html">current_weather_more</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KCID"</span>, <span class="st">"KDSM"</span>), <span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"wind_mph"</span>, <span class="st">"temp_f"</span>, <span class="st">"relative_humidity"</span>))</a></code></pre></div>
 <table class="table table table-striped">
 <thead><tr>
 <th style="text-align:left;">
@@ -358,13 +358,13 @@ KAMW
 -93.61889
 </td>
 <td style="text-align:left;">
-Last Updated on Apr 28 2019, 11:53 pm CDT
+Last Updated on Apr 29 2019, 3:53 am CDT
 </td>
 <td style="text-align:left;">
-10.4
+4.6
 </td>
 <td style="text-align:left;">
-44.0
+46.0
 </td>
 <td style="text-align:left;">
 93
@@ -384,16 +384,16 @@ KCID
 -91.72456
 </td>
 <td style="text-align:left;">
-Last Updated on Apr 28 2019, 11:52 pm CDT
+Last Updated on Apr 29 2019, 3:52 am CDT
 </td>
 <td style="text-align:left;">
-17.3
+12.7
 </td>
 <td style="text-align:left;">
 44.0
 </td>
 <td style="text-align:left;">
-89
+100
 </td>
 </tr>
 <tr>
@@ -410,16 +410,16 @@ KDSM
 -93.65307
 </td>
 <td style="text-align:left;">
-Last Updated on Apr 28 2019, 11:54 pm CDT
+Last Updated on Apr 29 2019, 3:54 am CDT
 </td>
 <td style="text-align:left;">
-11.5
+8.1
 </td>
 <td style="text-align:left;">
 46.0
 </td>
 <td style="text-align:left;">
-83
+93
 </td>
 </tr>
 </tbody>
@@ -465,7 +465,7 @@ Last Updated on Apr 28 2019, 11:54 pm CDT
 </tbody>
 </table>
 <p>Below is an example of calling this function to plot the user’s location (you.long = -100, you.lat = 35) as a red dot on the map，and plot 2 blue dots with the darkness of the color associated with the values of “temp_f” in the location of “KAMW” and “KAIO”.</p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" data-line-number="1"><span class="kw"><a href="../reference/plot_position.html">plot_position</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>), <span class="dt">type =</span> <span class="st">"temp_f"</span>, <span class="dt">you.long =</span> <span class="dv">-100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">number =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb4-1" title="1"><span class="kw"><a href="../reference/plot_position.html">plot_position</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>), <span class="dt">type =</span> <span class="st">"temp_f"</span>, <span class="dt">you.long =</span> <span class="dv">-100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">number =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="my-vignette_files/figure-html/unnamed-chunk-11-1.png" width="700"></p>
 </div>
 <div id="plot_weather" class="section level3">
@@ -503,14 +503,14 @@ Last Updated on Apr 28 2019, 11:54 pm CDT
 </tbody>
 </table>
 <p>The component can be factorial type, such as “weather”,</p>
-<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" data-line-number="1"><span class="kw"><a href="../reference/plot_weather.html">plot_weather</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),</a>
-<a class="sourceLine" id="cb5-2" data-line-number="2">            <span class="dt">type =</span> <span class="st">"weather"</span>,</a>
-<a class="sourceLine" id="cb5-3" data-line-number="3">            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb5"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb5-1" title="1"><span class="kw"><a href="../reference/plot_weather.html">plot_weather</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),</a>
+<a class="sourceLine" id="cb5-2" title="2">            <span class="dt">type =</span> <span class="st">"weather"</span>,</a>
+<a class="sourceLine" id="cb5-3" title="3">            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">FALSE</span>)</a></code></pre></div>
 <p><img src="my-vignette_files/figure-html/unnamed-chunk-12-1.png" width="700"></p>
 <p>or numerical/continuous type, such as “temp_f”</p>
-<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" data-line-number="1"><span class="kw"><a href="../reference/plot_weather.html">plot_weather</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),</a>
-<a class="sourceLine" id="cb6-2" data-line-number="2">            <span class="dt">type =</span> <span class="st">"temp_f"</span>,</a>
-<a class="sourceLine" id="cb6-3" data-line-number="3">            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb6"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb6-1" title="1"><span class="kw"><a href="../reference/plot_weather.html">plot_weather</a></span>(<span class="kw"><a href="https://www.rdocumentation.org/packages/base/topics/c">c</a></span>(<span class="st">"KAMW"</span>, <span class="st">"KAIO"</span>, <span class="st">"KCID"</span>, <span class="st">"KCNC"</span>),</a>
+<a class="sourceLine" id="cb6-2" title="2">            <span class="dt">type =</span> <span class="st">"temp_f"</span>,</a>
+<a class="sourceLine" id="cb6-3" title="3">            <span class="dt">label =</span> <span class="ot">TRUE</span>, <span class="dt">number =</span> <span class="ot">TRUE</span>)</a></code></pre></div>
 <p><img src="my-vignette_files/figure-html/unnamed-chunk-13-1.png" width="700"></p>
 </div>
 <div id="plot_weather_us" class="section level3">
@@ -547,7 +547,7 @@ Last Updated on Apr 28 2019, 11:54 pm CDT
 </tr>
 </tbody>
 </table>
-<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" data-line-number="1"><span class="kw"><a href="../reference/plot_weather_us.html">plot_weather_us</a></span>(<span class="dt">type =</span> <span class="st">"temp_c"</span>, <span class="dt">you.long =</span> <span class="dv">-100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">bin =</span> <span class="fl">0.5</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb7"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb7-1" title="1"><span class="kw"><a href="../reference/plot_weather_us.html">plot_weather_us</a></span>(<span class="dt">type =</span> <span class="st">"temp_c"</span>, <span class="dt">you.long =</span> <span class="dv">-100</span>, <span class="dt">you.lat =</span> <span class="dv">35</span>,<span class="dt">bin =</span> <span class="fl">0.5</span>)</a></code></pre></div>
 <p>It takes a relatively long time to run this function. Below is a previous result as a demonstration.</p>
 <p><img src="../man/figures/plot_weather_us-1.png" width="90%"></p>
 </div>
@@ -555,7 +555,7 @@ Last Updated on Apr 28 2019, 11:54 pm CDT
 <h3 class="hasAnchor">
 <a href="#obhistory" class="anchor"></a>obhistory()</h3>
 <p>The function <code>obhistory</code> is to retrieve 3 days history of weather and temperature of one location, as in general, the “weather condition” (Sunny, Fog, etc..) and “air temperature” ( in degrees Fahrenheit) are the two most important elements in weather data. The input of this function is the <code>id</code>, one 4-letter airport code; the output is a data frame of 9 columns.</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" data-line-number="1"><span class="kw"><a href="../reference/obhistory.html">obhistory</a></span>(<span class="st">"KAMW"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb8"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb8-1" title="1"><span class="kw"><a href="../reference/obhistory.html">obhistory</a></span>(<span class="st">"KAMW"</span>)</a></code></pre></div>
 <table class="table table table-striped">
 <thead><tr>
 <th style="text-align:left;">
@@ -598,100 +598,13 @@ Ames, Ames Municipal Airport, IA
 26
 </td>
 <td style="text-align:left;">
-01:53
-</td>
-<td style="text-align:left;">
-2019-04-25 01:53:00
-</td>
-<td style="text-align:left;">
-2019-04-24 20:53:00
-</td>
-<td style="text-align:left;">
-Fair and Breezy
-</td>
-<td style="text-align:right;">
-52
-</td>
-<td style="text-align:left;">
-first24hours
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-KAMW
-</td>
-<td style="text-align:left;">
-Ames, Ames Municipal Airport, IA
-</td>
-<td style="text-align:left;">
-26
-</td>
-<td style="text-align:left;">
-02:53
-</td>
-<td style="text-align:left;">
-2019-04-25 02:53:00
-</td>
-<td style="text-align:left;">
-2019-04-24 21:53:00
-</td>
-<td style="text-align:left;">
-Fair
-</td>
-<td style="text-align:right;">
-49
-</td>
-<td style="text-align:left;">
-first24hours
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-KAMW
-</td>
-<td style="text-align:left;">
-Ames, Ames Municipal Airport, IA
-</td>
-<td style="text-align:left;">
-26
-</td>
-<td style="text-align:left;">
-03:53
-</td>
-<td style="text-align:left;">
-2019-04-25 03:53:00
-</td>
-<td style="text-align:left;">
-2019-04-24 22:53:00
-</td>
-<td style="text-align:left;">
-Fair
-</td>
-<td style="text-align:right;">
-48
-</td>
-<td style="text-align:left;">
-first24hours
-</td>
-</tr>
-<tr>
-<td style="text-align:left;">
-KAMW
-</td>
-<td style="text-align:left;">
-Ames, Ames Municipal Airport, IA
-</td>
-<td style="text-align:left;">
-26
-</td>
-<td style="text-align:left;">
 04:53
 </td>
 <td style="text-align:left;">
-2019-04-25 04:53:00
+2019-04-26 04:53:00
 </td>
 <td style="text-align:left;">
-2019-04-24 23:53:00
+2019-04-25 23:53:00
 </td>
 <td style="text-align:left;">
 Fair
@@ -717,10 +630,10 @@ Ames, Ames Municipal Airport, IA
 05:53
 </td>
 <td style="text-align:left;">
-2019-04-25 05:53:00
+2019-04-26 05:53:00
 </td>
 <td style="text-align:left;">
-2019-04-25 00:53:00
+2019-04-26 00:53:00
 </td>
 <td style="text-align:left;">
 Fair
@@ -746,16 +659,103 @@ Ames, Ames Municipal Airport, IA
 06:53
 </td>
 <td style="text-align:left;">
-2019-04-25 06:53:00
+2019-04-26 06:53:00
 </td>
 <td style="text-align:left;">
-2019-04-25 01:53:00
+2019-04-26 01:53:00
 </td>
 <td style="text-align:left;">
 Fair
 </td>
 <td style="text-align:right;">
 44
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:left;">
+07:53
+</td>
+<td style="text-align:left;">
+2019-04-26 07:53:00
+</td>
+<td style="text-align:left;">
+2019-04-26 02:53:00
+</td>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+47
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:left;">
+08:53
+</td>
+<td style="text-align:left;">
+2019-04-26 08:53:00
+</td>
+<td style="text-align:left;">
+2019-04-26 03:53:00
+</td>
+<td style="text-align:left;">
+Fair and Breezy
+</td>
+<td style="text-align:right;">
+50
+</td>
+<td style="text-align:left;">
+first24hours
+</td>
+</tr>
+<tr>
+<td style="text-align:left;">
+KAMW
+</td>
+<td style="text-align:left;">
+Ames, Ames Municipal Airport, IA
+</td>
+<td style="text-align:left;">
+26
+</td>
+<td style="text-align:left;">
+09:53
+</td>
+<td style="text-align:left;">
+2019-04-26 09:53:00
+</td>
+<td style="text-align:left;">
+2019-04-26 04:53:00
+</td>
+<td style="text-align:left;">
+Fair
+</td>
+<td style="text-align:right;">
+52
 </td>
 <td style="text-align:left;">
 first24hours
@@ -773,7 +773,7 @@ first24hours
 <tbody>
 <tr class="odd">
 <td align="left">code</td>
-<td align="left">4 character airport code</td>
+<td align="left">one 4-letter airport code</td>
 <td align="left">chr</td>
 </tr>
 <tr class="even">
@@ -793,7 +793,7 @@ first24hours
 </tr>
 <tr class="odd">
 <td align="left">localtime</td>
-<td align="left">the local time of observations</td>
+<td align="left">the local time</td>
 <td align="left">chr</td>
 </tr>
 <tr class="even">
@@ -804,12 +804,17 @@ first24hours
 <tr class="odd">
 <td align="left">Weather</td>
 <td align="left">the Weather</td>
-<td align="left">Factor</td>
+<td align="left">factor</td>
 </tr>
 <tr class="even">
 <td align="left">Temperature</td>
+<td align="left">air temperature</td>
+<td align="left">num</td>
+</tr>
+<tr class="odd">
+<td align="left">hday</td>
 <td align="left">define the 1st, 2nd and 3rd 24 hours</td>
-<td align="left">Factor</td>
+<td align="left">factor</td>
 </tr>
 </tbody>
 </table>
@@ -819,7 +824,7 @@ first24hours
 <h3 class="hasAnchor">
 <a href="#plot_temp_history" class="anchor"></a>plot_temp_history()</h3>
 <p>The function <code>plot_temp_history</code> is to generate the plot of air temperature for 3 days until the current time. The resulting plot has the airport location name in the title, local hours labeld on the X axis, and 3 lines each for one 24-hour.</p>
-<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" data-line-number="1"><span class="kw"><a href="../reference/plot_temp_history.html">plot_temp_history</a></span>(<span class="st">"KAMW"</span>)</a></code></pre></div>
+<div class="sourceCode" id="cb9"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb9-1" title="1"><span class="kw"><a href="../reference/plot_temp_history.html">plot_temp_history</a></span>(<span class="st">"KAMW"</span>)</a></code></pre></div>
 <p><img src="../man/figures/temp_plot_full_size.png" width="100%"></p>
 </div>
 <div id="runshiny" class="section level3">
@@ -827,7 +832,7 @@ first24hours
 <a href="#runshiny" class="anchor"></a>runShiny()</h3>
 <p>A shiny app was designed to demonstrate selected functions in the <code>airportweather</code> package. The spatial visualization tab, “Weather information on map”, call <code>current_weather_more</code> to show selected weather variables for single or multiple airports on interactive Maps with <code>leaflet</code>, and generate an integrated table for multiple locations as well.</p>
 <p>Launch shiny spp,</p>
-<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" data-line-number="1"><span class="kw"><a href="../reference/runShiny.html">runShiny</a></span>()</a></code></pre></div>
+<div class="sourceCode" id="cb10"><pre class="sourceCode r"><code class="sourceCode r"><a class="sourceLine" id="cb10-1" title="1"><span class="kw"><a href="../reference/runShiny.html">runShiny</a></span>()</a></code></pre></div>
 <p>and you should see the panel as below:</p>
 <p><img src="../man/figures/launch.png" width="100%"></p>
 <p>Choose the airport code by typing the letter or just choose from the menu. When you type letter, the menu will show all choice with the letters. You can choose multiple airports.</p>
