@@ -84,7 +84,7 @@ runShiny()
 
 ![alt text](man/figures/launch.png "Launch shiny app")
 
-Choose the airport code by typing the letter or just choose from the menu. When you type letter, the menu will show all choice with the letters. You can choose multiple airports.
+Choose the airport code by typing the letter or just choose from the menu. When you type code, city or state, the menu will show all choice with your enter. You just need to know the state or city of the airport if you don't know the airport code.  You can choose multiple airports.
 
 
 ![alt text](man/figures/code.png "Choose airport code")
