@@ -36,28 +36,30 @@ current_weather_more(c("KAMW", "KAIO", "KCID", "KCNC"), c("temp_f"))
 current_weather_more(c("KAMW", "KAIO", "KCID", "KCNC"), c("temp_f", "wind_mph"))
 ```
 
-Plot one component of several airports on the map of US.
+Plot one numerical component of several airports on the map of US.
 
 ``` r
-plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
-            type = "weather",
-            label = TRUE, number = FALSE)
-            
-plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
-            type = "temp_f",
-            label = TRUE, number = TRUE)
+plot_weather_num(c("KAMW", "KAIO", "KCID", "KCNC"),
+                 type = "temp_c")
+plot_weather_num(c("KAMW", "KAIO", "KCID", "KCNC"),
+                 type = "temp_f",
+                 label = F)
 ```
 
-Plot one component of the airports chosen by user and the user's position on the map of US.
+Plot one categorical component of the airports chosen by user on the map of US.
 
 ``` r
-plot_position(c("KAMW", "KAIO"), type = "temp_f", you.long = -100, you.lat = 35,number = TRUE)
+plot_weather_cat(c("KAMW", "KAIO", "KCID", "KCNC"),
+                 type = "wind_dir")
+plot_weather_cat(c("KAMW", "KAIO", "KCID", "KCNC"),
+                 type = "weather",
+                 label = F)            
 ```
 
-Plot one component of all airports and the user's position on the map of US with contour lines. It takes a couple of seconds to run. The component has to be continuous.
+Plot one component of all airports on the map of US with contour lines. It takes a couple of seconds to run. The component has to be continuous.
 
 ``` r
-plot_weather_us(type = "temp_c",you.long = -100, you.lat = 35,bin = 0.5)
+plot_weather_us(type = "temp_c", bin = 0.5)
 ```
 
 Retrieve history weather and temperature data for 3 days of one airport location. 
