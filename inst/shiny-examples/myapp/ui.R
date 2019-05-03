@@ -1,5 +1,5 @@
 data(package = "airportweather", "all_code")
-Code <- unite(all_code,"Info",c("State","Code","Name"),sep = " | ")
+Code <- unite(all_code,"Info",c("State","Code","Name"),sep = " | ", remove = F)
 ui <- fluidPage(
   tags$style(type="text/css",
              ".shiny-output-error { visibility: hidden; }",

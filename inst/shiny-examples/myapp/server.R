@@ -1,6 +1,7 @@
 server <- function(input, output) {
+
   d1<-reactive ({
-    df<-current_weather_more(id_vector=input$code,type=input$feature) %>%
+    df<-current_weather_more(id_vector=vapply(strsplit(input$code," | "), `[`, 3, FUN.VALUE=character(1)),type=input$feature) %>%
       dplyr::mutate_if(is.factor,as.character) %>%
       tidyr::unite("info",-c("location","latitude","longitude","observation_time"),sep = "<br/>",remove = FALSE)
     df
@@ -23,8 +24,8 @@ server <- function(input, output) {
   })
 
   output$plot_temp <- renderPlot({
-    plot_temp_history(input$code)
+    plot_temp_history(vapply(strsplit(input$code," | "), `[`, 3, FUN.VALUE=character(1)))
   })
 
-  output$history_info <- renderDataTable( obhistory(input$code)[, -c(1:2)])
+  output$history_info <- renderDataTable( obhistory(vapply(strsplit(input$code," | "), `[`, 3, FUN.VALUE=character(1)))[, -c(1:2)])
 }
