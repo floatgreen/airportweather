@@ -1,21 +1,18 @@
 ##' @name plot_weather_us
 ##' @title Plot an Numeric Element of All US Airport in Contour Lines
 ##' @description This function plot an numeric element of all US airport in contour lines
-##' @usage plot_weather_us(type, you.long, you.lat, bin)
+##' @usage plot_weather_us(type, bin)
 ##' @param type a vector of weather elements
-##' @param you.long The longitude of your location
-##' @param you.lat The latitude of your location
 ##' @param bin the binwidth of the contour lines
 ##' @examples
-##' plot_weather_us(type = "temp_c",
-##' you.long = -100, you.lat = 35,bin = 0.5)
+##' plot_weather_us(type = "temp_c", bin = 0.5)
 ##' @import ggplot2
 ##' @importFrom stats loess predict
 ##' @importFrom reshape melt
 ##' @import stringr
 ##' @export
 
-plot_weather_us <- function(type, you.long, you.lat, bin){
+plot_weather_us <- function(type, bin){
   id <- c("KBHM", "KDHN", "KHSV", "KMOB", "KMGM", "KIFP", "KFLG", "KGCN", "KIWA",
           "KPGA", "KPHX", "KTUS", "KNYL", "KXNA", "KFSM", "KLIT", "KTXK", "KACV",
           "KBFL", "KBUR", "KFAT", "KLGB", "KLAX", "KMMH", "KMRY", "KOAK", "KONT",
@@ -73,8 +70,6 @@ plot_weather_us <- function(type, you.long, you.lat, bin){
                  color = "grey", alpha = 0.6) +
     geom_contour(data = mtrx.melt, binwidth = bin,
                  aes(x = longitude, y = latitude, z = element,colour = ..level..)) +
-    geom_point(aes(x= you.long, y=you.lat), colour="red") +
-    geom_text(aes(x = you.long - 0.5, y = you.lat - 0.5, label = "You"),size = 2) +
     theme_bw() +
     labs(title = type,
          subtitle = as.character(data$observation_time[1]))+

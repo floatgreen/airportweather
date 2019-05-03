@@ -4,14 +4,10 @@
 \alias{plot_weather_us}
 \title{Plot an Numeric Element of All US Airport in Contour Lines}
 \usage{
-plot_weather_us(type, you.long, you.lat, bin)
+plot_weather_us(type, bin)
 }
 \arguments{
 \item{type}{a vector of weather elements}
-
-\item{you.long}{The longitude of your location}
-
-\item{you.lat}{The latitude of your location}
 
 \item{bin}{the binwidth of the contour lines}
 }
@@ -19,6 +15,5 @@ plot_weather_us(type, you.long, you.lat, bin)
 This function plot an numeric element of all US airport in contour lines
 }
 \examples{
-plot_weather_us(type = "temp_c",
-you.long = -100, you.lat = 35,bin = 0.5)
+plot_weather_us(type = "temp_c", bin = 0.5)
 }

@@ -1,30 +1,26 @@
-##' @name plot_weather
+##' @name plot_weather_cat
 ##' @title Plot Weather Information on Map
-##' @description plot an element of an weather informaton of multiple airports on map
-##' @usage plot_weather(id_vector, type, label = TRUE, number = TRUE)
+##' @description plot a categorical element of an weather informaton of multiple airports on map
+##' @usage plot_weather_cat(id_vector, type, label = TRUE)
 ##' @param id_vector a vector of multiple airport codes
-##' @param type a vector of weather elements
+##' @param type a character of one categorical weather element
 ##' @param label lable= TRUE: label airport code on the plot
-##' @param number number= TRUE: this element is numeric
 ##' @examples
-##' plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
+##' plot_weather_cat(c("KAMW", "KAIO", "KCID", "KCNC"),
 ##'            type = "weather",
-##'            label = TRUE, number = FALSE)
+##'            label = TRUE)
 ##' @import ggplot2
 ##' @export
 
 #dependence? ggmap maps mapdata
 
-#Function3: plot an element
+#Function3: plot a categorical element
 #label = true: label airport code on the plot
-#number = true: this element is numeric
 #plot one weather elements of several airport
-plot_weather <- function(id_vector, type, label = TRUE, number = TRUE){
+plot_weather_cat <- function(id_vector, type, label = TRUE){
   data <- current_weather_more(id_vector, type)
   colnames(data)[6]<-"element"
-  if (number == TRUE){
-    data$element <- as.numeric(as.character(data$element))
-  }
+  data$element <- as.factor(data$element)
   states <- map_data("state")
   if(label == TRUE){
     ggplot(data = states) +
