@@ -1,5 +1,5 @@
 data(package = "airportweather", "all_code")
-Code <- all_code$Code
+Code <- unite(all_code,"Info",c("State","Code","Name"),sep = " | ")
 ui <- fluidPage(
   tags$style(type="text/css",
              ".shiny-output-error { visibility: hidden; }",
@@ -8,7 +8,7 @@ ui <- fluidPage(
   fluidRow(
     column(width = 5, wellPanel(
       selectizeInput(inputId = "code", label = "Choose the airport code",
-                     choices=Code,
+                     choices=Code$Info,
                      selected=NULL,
                      multiple=T)
     )),
