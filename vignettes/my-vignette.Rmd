@@ -144,31 +144,29 @@ kableExtra::kable(c_weather) %>% kableExtra::kable_styling(bootstrap_options = "
 ```
 
 
-### plot_position()
+### plot_weather_cat()
 
-The`plot_position` function plot one weather component of the airports chosen by user and the user's position on the map of US.
+The`plot_weather_cat` function plot one categorical weather component of several airports on the map of US.
 
 Description of input parameters is as follows:
 
 |Parameter|Description|Type|
 |:---|:---|:---|
-|id_vector|a vector of  multiple airport codes|chr vector|
-|type|a weather elements|chr |
-|you.long| user provided longitude |num|
-|you.lat| user provided latitude |num|
-|number|number= true: this element is numeric|logical|
+|id_vector|a vector of multiple airport codes|chr vector|
+|type|a weather element |chr|
+|label|label= TRUE: label airport code on the plot|logical|
 
-
-Below is an example of calling this function to plot the user's location (you.long = -100, you.lat = 35) as a red dot on the map，and plot 2 blue dots with the darkness of the color associated with the values of "temp_f" in the location of  "KAMW" and "KAIO".
-
+Below is an example to plot a categorical weather component, weather. 
 ```{r}
-plot_position(c("KAMW", "KAIO"), type = "temp_f", you.long = -100, you.lat = 35,number = TRUE)
+plot_weather_cat(c("KAMW", "KAIO", "KCID", "KCNC"),
+            type = "weather",
+            label = TRUE)
+            
 ```
 
+### plot_weather_num()
 
-### plot_weather()
-
-The`plot_weather` function plot one weather component of several airports on the map of US.
+The`plot_weather_num` function plot one numeric element weather component of several airports on the map of US.
 
 Description of input parameters is as follows:
 
@@ -179,20 +177,11 @@ Description of input parameters is as follows:
 |label|label= TRUE: label airport code on the plot|logical|
 |number|number= TRUE: this element is numeric|logical|
 
-The component can be factorial type, such as "weather", 
-
+Below is an example to plot a numerical/continuous weather component, such as "temp_f".
 ```{r}
-plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
-            type = "weather",
-            label = TRUE, number = FALSE)
-            
-```
-
-or numerical/continuous type, such as "temp_f"
-```{r}
-plot_weather(c("KAMW", "KAIO", "KCID", "KCNC"),
+plot_weather_num(c("KAMW", "KAIO", "KCID", "KCNC"),
             type = "temp_f",
-            label = TRUE, number = TRUE)
+            label = TRUE)
             
 ```
 
@@ -212,7 +201,7 @@ Description of input parameters is as follows:
 
 
 ```{r, eval = FALSE }
-plot_weather_us(type = "temp_c", you.long = -100, you.lat = 35,bin = 0.5)
+plot_weather_us(type = "temp_c",bin = 0.5)
 ```
 It takes a relatively long time to run this function. Below is a previous result as a demonstration.
 
@@ -257,7 +246,7 @@ Note that the returned data frame has a various number of rows, as the observati
 
 ### plot_temp_history()
 
-The function `plot_temp_history` is to generate the plot of air temperature for 3 days until the current time. The resulting plot has the airport location name in the title, local hours labeld on the X axis, and 3 lines each for one 24-hour.
+The function `plot_temp_history` is to generate the plot of air temperature for 3 days until the current time. The resulting plot has the airport location name in the title, local hours labeled on the X axis, and 3 lines each for one 24-hour.
 
 
 ```{r, eval= F }

@@ -11,7 +11,8 @@
 ##' @importFrom reshape melt
 ##' @import stringr
 ##' @export
-
+type = "temp_c"
+bin = 0.5
 plot_weather_us <- function(type, bin){
   id <- c("KBHM", "KDHN", "KHSV", "KMOB", "KMGM", "KIFP", "KFLG", "KGCN", "KIWA",
           "KPGA", "KPHX", "KTUS", "KNYL", "KXNA", "KFSM", "KLIT", "KTXK", "KACV",
@@ -65,11 +66,12 @@ plot_weather_us <- function(type, bin){
   colnames(mtrx.melt)[3]<-"element"
   mtrx.melt$longitude <- as.numeric(str_sub(mtrx.melt$longitude, str_locate(mtrx.melt$longitude, '=')[1,1] + 1))
   mtrx.melt$latitude <- as.numeric(str_sub(mtrx.melt$latitude, str_locate(mtrx.melt$latitude, '=')[1,1] + 1))
-  ggplot(data = states) +
+    ggplot(data = states) +
     geom_polygon(aes(x = long, y = lat, group = group),
                  color = "grey", alpha = 0.6) +
     geom_contour(data = mtrx.melt, binwidth = bin,
                  aes(x = longitude, y = latitude, z = element,colour = ..level..)) +
+    scale_color_gradientn(colours = rainbow(5, end = 0,start = 4/6))+
     theme_bw() +
     labs(title = type,
          subtitle = as.character(data$observation_time[1]))+
