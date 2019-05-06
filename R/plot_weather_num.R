@@ -1,7 +1,7 @@
 ##' @name plot_weather_num
 ##' @title Plot Weather Information on Map
 ##' @description plot a numeric element of an weather informaton of multiple airports on map
-##' @usage plot_weather(id_vector, type, label = TRUE)
+##' @usage plot_weather_num(id_vector, type, label = TRUE)
 ##' @param id_vector a vector of multiple airport codes
 ##' @param type a character of one numerical weather element
 ##' @param label lable= TRUE: label airport code on the plot

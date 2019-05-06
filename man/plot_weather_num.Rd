@@ -4,7 +4,7 @@
 \alias{plot_weather_num}
 \title{Plot Weather Information on Map}
 \usage{
-plot_weather(id_vector, type, label = TRUE)
+plot_weather_num(id_vector, type, label = TRUE)
 }
 \arguments{
 \item{id_vector}{a vector of multiple airport codes}

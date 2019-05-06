@@ -7,13 +7,13 @@
 ##' @examples
 ##' plot_weather_us(type = "temp_c", bin = 0.5)
 ##' @import ggplot2
+##' @importFrom grDevices rainbow
 ##' @importFrom stats loess predict
 ##' @importFrom reshape melt
 ##' @import stringr
 ##' @export
-type = "temp_c"
-bin = 0.5
-plot_weather_us <- function(type, bin){
+
+plot_weather_us <- function(type = "temp_c", bin = 0.5){
   id <- c("KBHM", "KDHN", "KHSV", "KMOB", "KMGM", "KIFP", "KFLG", "KGCN", "KIWA",
           "KPGA", "KPHX", "KTUS", "KNYL", "KXNA", "KFSM", "KLIT", "KTXK", "KACV",
           "KBFL", "KBUR", "KFAT", "KLGB", "KLAX", "KMMH", "KMRY", "KOAK", "KONT",

@@ -6,7 +6,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Read weather observation history of One Airport Location — obhistory • airportweather</title>
+<title>Plot Weather Information on Map — plot_weather_cat • airportweather</title>
 
 <!-- jquery -->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
@@ -30,9 +30,9 @@
 
 
 
-<meta property="og:title" content="Read weather observation history of One Airport Location — obhistory" />
+<meta property="og:title" content="Plot Weather Information on Map — plot_weather_cat" />
 
-<meta property="og:description" content="This function read a table from an html page from National Weather Service website and output a dataframe" />
+<meta property="og:description" content="plot a categorical element of an weather informaton of multiple airports on map" />
 
 <meta property="og:image" content="/logo.png" />
 <meta name="twitter:card" content="summary" />
@@ -113,56 +113,47 @@
 <div class="row">
   <div class="col-md-9 contents">
     <div class="page-header">
-    <h1>Read weather observation history of One Airport Location</h1>
-    <small class="dont-index">Source: <a href='https://github.com/floatgreen/airportweather/blob/master/R/obhistory.R'><code>R/obhistory.R</code></a></small>
-    <div class="hidden name"><code>obhistory.Rd</code></div>
+    <h1>Plot Weather Information on Map</h1>
+    <small class="dont-index">Source: <a href='https://github.com/floatgreen/airportweather/blob/master/R/plot_weather_cat.R'><code>R/plot_weather_cat.R</code></a></small>
+    <div class="hidden name"><code>plot_weather_cat.Rd</code></div>
     </div>
 
     <div class="ref-description">
     
-    <p>This function read a table from an html page from National Weather Service website and output a dataframe</p>
+    <p>plot a categorical element of an weather informaton of multiple airports on map</p>
     
     </div>
 
-    <pre class="usage"><span class='fu'>obhistory</span>(<span class='no'>id</span>)</pre>
+    <pre class="usage"><span class='fu'>plot_weather_cat</span>(<span class='no'>id_vector</span>, <span class='no'>type</span>, <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</pre>
     
     <h2 class="hasAnchor" id="arguments"><a class="anchor" href="#arguments"></a>Arguments</h2>
     <table class="ref-arguments">
     <colgroup><col class="name" /><col class="desc" /></colgroup>
     <tr>
-      <th>id</th>
-      <td><p>one 4 character airport code</p></td>
+      <th>id_vector</th>
+      <td><p>a vector of multiple airport codes</p></td>
+    </tr>
+    <tr>
+      <th>type</th>
+      <td><p>a character of one categorical weather element</p></td>
+    </tr>
+    <tr>
+      <th>label</th>
+      <td><p>lable= TRUE: label airport code on the plot</p></td>
     </tr>
     </table>
     
-    <h2 class="hasAnchor" id="value"><a class="anchor" href="#value"></a>Value</h2>
-
-    <p>a data frame with 7 variabes descripting the weather history of Weather and Temperature</p>
-    
 
     <h2 class="hasAnchor" id="examples"><a class="anchor" href="#examples"></a>Examples</h2>
-    <pre class="examples"><div class='input'><span class='fu'>obhistory</span>(<span class='st'>"KAMW"</span>)</div><div class='output co'>#&gt; <span style='color: #555555;'># A tibble: 72 x 9</span><span>
-#&gt;    code  loc_name date  time  localtime time_UTC            Weather Temperature
-#&gt;    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>    </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span> </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span>     </span><span style='color: #555555;font-style: italic;'>&lt;dttm&gt;</span><span>              </span><span style='color: #555555;font-style: italic;'>&lt;fct&gt;</span><span>         </span><span style='color: #555555;font-style: italic;'>&lt;dbl&gt;</span><span>
-#&gt; </span><span style='color: #555555;'> 1</span><span> KAMW  Ames, A… 03    15:53 2019-05-… 2019-05-03 </span><span style='color: #555555;'>20:53:00</span><span> Mostly…          59
-#&gt; </span><span style='color: #555555;'> 2</span><span> KAMW  Ames, A… 03    16:53 2019-05-… 2019-05-03 </span><span style='color: #555555;'>21:53:00</span><span> Fair             60
-#&gt; </span><span style='color: #555555;'> 3</span><span> KAMW  Ames, A… 03    17:53 2019-05-… 2019-05-03 </span><span style='color: #555555;'>22:53:00</span><span> Fair             61
-#&gt; </span><span style='color: #555555;'> 4</span><span> KAMW  Ames, A… 03    18:53 2019-05-… 2019-05-03 </span><span style='color: #555555;'>23:53:00</span><span> Fair             60
-#&gt; </span><span style='color: #555555;'> 5</span><span> KAMW  Ames, A… 03    19:53 2019-05-… 2019-05-04 </span><span style='color: #555555;'>00:53:00</span><span> Fair             53
-#&gt; </span><span style='color: #555555;'> 6</span><span> KAMW  Ames, A… 03    20:53 2019-05-… 2019-05-04 </span><span style='color: #555555;'>01:53:00</span><span> Fair             51
-#&gt; </span><span style='color: #555555;'> 7</span><span> KAMW  Ames, A… 03    21:53 2019-05-… 2019-05-04 </span><span style='color: #555555;'>02:53:00</span><span> Fair             47
-#&gt; </span><span style='color: #555555;'> 8</span><span> KAMW  Ames, A… 03    22:53 2019-05-… 2019-05-04 </span><span style='color: #555555;'>03:53:00</span><span> Fair             46
-#&gt; </span><span style='color: #555555;'> 9</span><span> KAMW  Ames, A… 03    23:53 2019-05-… 2019-05-04 </span><span style='color: #555555;'>04:53:00</span><span> Fair             45
-#&gt; </span><span style='color: #555555;'>10</span><span> KAMW  Ames, A… 04    00:53 2019-05-… 2019-05-04 </span><span style='color: #555555;'>05:53:00</span><span> Fair             44
-#&gt; </span><span style='color: #555555;'># … with 62 more rows, and 1 more variable: hday </span><span style='color: #555555;font-style: italic;'>&lt;chr&gt;</span><span></div></span></pre>
+    <pre class="examples"><div class='input'><span class='fu'>plot_weather_cat</span>(<span class='fu'><a href='https://www.rdocumentation.org/packages/base/topics/c'>c</a></span>(<span class='st'>"KAMW"</span>, <span class='st'>"KAIO"</span>, <span class='st'>"KCID"</span>, <span class='st'>"KCNC"</span>),
+           <span class='kw'>type</span> <span class='kw'>=</span> <span class='st'>"weather"</span>,
+           <span class='kw'>label</span> <span class='kw'>=</span> <span class='fl'>TRUE</span>)</div><div class='img'><img src='plot_weather_cat-1.png' alt='' width='700' height='433' /></div></pre>
   </div>
   <div class="col-md-3 hidden-xs hidden-sm" id="sidebar">
     <h2>Contents</h2>
     <ul class="nav nav-pills nav-stacked">
       <li><a href="#arguments">Arguments</a></li>
-      
-      <li><a href="#value">Value</a></li>
-      
+            
       <li><a href="#examples">Examples</a></li>
     </ul>
 
