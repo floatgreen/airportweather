@@ -330,4 +330,4 @@ knitr::include_graphics("../man/figures/temp_table.png")
 
 
 ## Future work
-We can retrieve and plot more continuous data such as "Relative Humidity" for the past 3 days.
+Combined with flights information, our package can be used to evaluate the performance of airports and airlines. By analyzing the airport weather data and flight information data, we can find out which airport and which airline has the most delays due to weather, which weather components cause the most flight delays, and so on.
